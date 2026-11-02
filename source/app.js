@@ -52,21 +52,15 @@
   function updateLanguage(lang) {
     language = lang; document.documentElement.lang = lang; document.title = t('pageTitle');
     document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.dataset.i18n); });
-    $('#participant').placeholder = lang === 'ko' ? '예: P001' : 'Ví dụ: P001'; $('#run-stop').textContent = t('stop'); renderCards();
+    $('#participant').placeholder = lang === 'ko' ? '예: P001' : 'Ví dụ: P001'; $('#lang-ko').classList.toggle('selected', lang === 'ko'); $('#lang-vi').classList.toggle('selected', lang === 'vi'); $('#run-stop').textContent = t('stop'); renderCards();
   }
-  // ── 표지 → 언어 선택 → 검사 선택 ─────────────────────────────────
-  function screen(name) {
-    $('#cover').hidden = name !== 'cover'; $('#lang-select').hidden = name !== 'lang';
-    $('#site-header').hidden = !(name === 'home' || name === 'run' || name === 'results'); $('#home').hidden = name !== 'home';
-    window.scrollTo(0, 0);
-  }
-  $('#cover-start').onclick = () => screen('lang');
+  // ── 언어: 첫 화면 오른쪽 위에서 선택. 아직 준비되지 않은 언어(config.languages=false)는 안내만 표시 ──
   function pickLanguage(lang) {
-    if (C.languages && C.languages[lang] === false) { language = lang; const p = $('#lang-pending'); p.textContent = t('langPending'); p.hidden = false; language = 'ko'; return; }
-    $('#lang-pending').hidden = true; updateLanguage(lang); screen('home'); checkRecovery();
+    const p = $('#lang-pending');
+    if (C.languages && C.languages[lang] === false) { p.textContent = (BATTERY_TEXT[lang] || {}).langPending || BATTERY_TEXT.ko.langPending; p.hidden = false; return; }
+    p.hidden = true; updateLanguage(lang);
   }
-  $('#pick-ko').onclick = () => pickLanguage('ko'); $('#pick-vi').onclick = () => pickLanguage('vi');
-  $('#change-lang').onclick = () => { if (!running) screen('lang'); };
+  $('#lang-ko').onclick = () => pickLanguage('ko'); $('#lang-vi').onclick = () => pickLanguage('vi');
   $('#settings-open').onclick = () => { $('#sheets-url').value = settings.googleSheetsUrl || ''; $('#pipe-id').value = settings.dataPipeExperimentId || ''; $('#auto-upload').checked = settings.autoUpload !== false; $('#settings-dialog').showModal(); };
   $('#save-settings').onclick = () => { settings = { googleSheetsUrl: $('#sheets-url').value.trim(), dataPipeExperimentId: $('#pipe-id').value.trim(), autoUpload: $('#auto-upload').checked }; try { localStorage.setItem(SETTINGS, JSON.stringify(settings)); } catch { /* 무시 */ } $('#settings-dialog').close(); };
 
@@ -155,7 +149,7 @@
     document.body.classList.remove('running'); $('#run-shell').hidden = true; $('#results').hidden = false;
     $('#results').innerHTML = `<div class="success-icon">${stopped ? '!' : '✓'}</div><div class="eyebrow">${stopped ? 'SESSION STOPPED' : 'SESSION COMPLETE'}</div><h1>${t(stopped ? 'doneStopped' : 'done')}</h1><p>${t('doneBody')}</p><div class="save-status" id="save-status" role="status"></div><div class="result-actions"><button class="primary" id="download-result-json">${t('downloadResultJson')}</button><button class="secondary" id="retry-save" hidden>${t('retry')}</button></div><details><summary>${t('researchResults')}</summary>${resultTable()}${session.interruptions.length ? `<p>${escape(t('interruptNote', { n: session.interruptions.length }))}</p>` : ''}<p class="result-meta">${escape(session.participant_id)} · ${escape(A.sessionId(session))}</p><button class="secondary" id="download-xlsx">${t('download')}</button> <button class="secondary" id="download-json">${t('downloadJson')}</button></details><div class="result-actions"><button class="secondary" id="new-session">${t('newSession')}</button><button class="text-button" id="clear-local">${t('clearLocal')}</button></div>`;
     $('#download-result-json').onclick = () => exportResult(); $('#download-json').onclick = () => exportRaw(); $('#download-xlsx').onclick = () => exportWorkbook();
-    $('#new-session').onclick = () => { session = null; $('#results').hidden = true; screen('home'); checkRecovery(); };
+    $('#new-session').onclick = () => { session = null; $('#results').hidden = true; $('#home').hidden = false; checkRecovery(); };
     $('#clear-local').onclick = () => { if (confirm(t('clearConfirm'))) { try { localStorage.removeItem(STORE); } catch { /* 무시 */ } $('#clear-local').disabled = true; } };
     $('#retry-save').onclick = () => upload(true); upload(false);
   }
@@ -185,5 +179,5 @@
     } catch { $('#recovery').hidden = true; }
   }
   $('#birth-date').max = I.testDate(new Date().toISOString()); $('#version-label').textContent = 'v' + C.version;
-  updateLanguage(language); screen('cover');
+  updateLanguage(language); checkRecovery();
 })();

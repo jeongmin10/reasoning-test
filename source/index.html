@@ -9,36 +9,10 @@
 <script defer src="config.js"></script><script defer src="tasks.js"></script><script defer src="participant.js"></script><script defer src="analysis.js"></script><script defer src="results.js"></script><script defer src="workbook.js"></script><script defer src="data-tables.js"></script><script defer src="export.js"></script><script defer src="upload.js"></script><script defer src="i18n.js"></script><script defer src="app.js"></script>
 </head>
 <body>
-  <!-- 1) 표지 (자극책자 표지 디자인) -->
-  <section id="cover" class="cover">
-    <div class="cover-top"></div>
-    <div class="cover-band"><div class="cover-title">한국추론능력검사</div><div class="cover-sub">KOREAN REASONING ABILITY TEST</div></div>
-    <div class="cover-card" aria-hidden="true"><div></div></div>
-    <div class="cover-main">
-      <div class="cover-kind">온라인 검사</div>
-      <div class="cover-blocks" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><br><i class="b4"></i><i class="b1"></i><i class="b2"></i><i class="b5"></i><i class="b4"></i></div>
-      <button id="cover-start" class="cover-start" type="button"><span class="play"></span>시작하기</button>
-    </div>
-    <img class="cover-logo" src="assets/institute-logo.png" width="640" height="226" alt="ccpi">
-    <div class="cover-foot"><div>한국추론연구소 &nbsp;|&nbsp; Korea Reasoning Institute<br>중앙임상심리연구소 &nbsp;|&nbsp; Chung-Ang Clinical Psychology Institute</div><div>추론능력검사</div></div>
-  </section>
-
-  <!-- 2) 언어 선택 -->
-  <section id="lang-select" class="lang-select" hidden>
-    <div class="lang-box">
-      <div class="eyebrow">LANGUAGE · 언어 선택 · NGÔN NGỮ</div>
-      <h1>검사 언어를 선택해 주세요.<br><span>Vui lòng chọn ngôn ngữ.</span></h1>
-      <div class="lang-buttons">
-        <button id="pick-ko" class="lang-card" lang="ko"><b>한국어</b><small>Korean</small></button>
-        <button id="pick-vi" class="lang-card" lang="vi"><b>Tiếng Việt</b><small>Vietnamese</small></button>
-      </div>
-      <p id="lang-pending" class="lang-pending" role="status" hidden></p>
-    </div>
-  </section>
-
-  <!-- 3) 검사 선택 · 참가자 정보 -->
-  <header class="site-header" id="site-header" hidden><a class="brand institute-brand" href="./" aria-label="(사)중앙임상심리연구소 · 처음 화면"><img class="institute-logo" src="assets/institute-logo.png" width="640" height="226" alt=""><span class="institute-name">(사)중앙임상심리연구소</span></a><div class="header-actions"><button id="change-lang" class="text-button" data-i18n="changeLanguage">언어 변경</button><button id="settings-open" class="text-button" title="연구자 설정" aria-label="연구자 설정">⚙</button></div></header>
-  <main id="home" class="home-shell" hidden>
+  <!-- 첫 화면: 검사 선택 · 참가자 정보 (언어는 오른쪽 위에서 선택) -->
+  <header class="site-header" id="site-header"><a class="brand institute-brand" href="./" aria-label="(사)중앙임상심리연구소 · 처음 화면"><img class="institute-logo" src="assets/institute-logo.png" width="640" height="226" alt=""><span class="institute-name">(사)중앙임상심리연구소</span></a><div class="header-actions"><div class="language-switch" aria-label="Language"><button id="lang-ko" class="selected" lang="ko" type="button">한국어</button><button id="lang-vi" lang="vi" type="button">Tiếng Việt</button></div><button id="settings-open" class="text-button" title="연구자 설정" aria-label="연구자 설정">⚙</button></div></header>
+  <main id="home" class="home-shell">
+    <p id="lang-pending" class="lang-pending" role="status" hidden></p>
     <div class="home-intro"><div class="eyebrow" data-i18n="eyebrow">KOREAN REASONING ABILITY TEST</div>
     <h1 data-i18n="title">한국추론능력검사</h1>
     <p class="lead" data-i18n="lead"></p></div>
