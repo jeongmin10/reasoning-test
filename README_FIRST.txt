@@ -2,7 +2,7 @@
 
 이 폴더 전체가 GitHub Pages 에 올리는 저장소 내용입니다.
 
-1. 시작: index.html → 표지 → 언어 선택(한국어 / Tiếng Việt: 현재 "준비 중") → 소검사 선택 · 참가자 정보 → 검사 시작
+1. 시작: index.html 첫 화면에서 소검사 선택 · 참가자 정보 → 검사 시작 (언어는 오른쪽 위 한국어 / Tiếng Việt, 베트남어는 현재 "준비 중")
 2. 소검사 13개: 핵심 8개(처음부터 선택됨) + 보충 5개(검사자가 눌러서 선택). 선택한 소검사만, 개발시트 '소검사 배열 순서'대로 진행
    소검사 화면은 ko/<검사>/ (index.html + data.js + images/), 공통 엔진은 assets/reasoning/
 3. 저장: 검사가 끝나면 결과가 Google 스프레드시트로 자동 전송 → docs/GOOGLE_SHEETS_SETUP.md (웹앱 주소를 source/config.js 에 넣어야 동작)
