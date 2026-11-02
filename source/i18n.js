@@ -1,0 +1,38 @@
+/* 셸(표지·언어 선택·첫 화면·결과 화면)의 문구. 소검사 안의 문구는 ko/·vi/ 각 검사 폴더의 data.js 에 있습니다.
+   vi 는 베트남어 버전 제작 시 채웁니다(비어 있는 항목은 한국어로 표시). */
+window.BATTERY_TEXT = {
+  ko: {
+    pageTitle: '한국추론능력검사', eyebrow: 'KOREAN REASONING ABILITY TEST', title: '한국추론능력검사',
+    lead: '핵심 소검사 8개는 전 연령에 실시하고,<br>보충 소검사는 연령에 맞게 선택해 실시합니다.',
+    coreTitle: '핵심 소검사', coreHint: '전 연령 실시 · 기본으로 모두 선택되어 있습니다.',
+    suppTitle: '보충 소검사', suppHint: '연령에 맞는 보충 소검사를 눌러서 선택해 주세요. (더비셔: 만 2~5세 / 나머지: 만 6~11세)',
+    changeLanguage: '언어 변경',
+    participantHeading: '참가자 정보', participant: '코드번호 *', codeHint: '연구자가 배정한 영문·숫자 코드번호를 입력해 주세요.',
+    participantName: '이름 (선택)', nameHint: '개인 결과 확인용입니다. 분석용 시트에는 포함하지 않습니다.',
+    birthDate: '생년월일 *', birthHint: '검사일 기준 만 나이와 총 월령을 자동 계산합니다.',
+    selectedSummary: '실시할 소검사 {n}개 (핵심 {c}개 · 보충 {s}개) · 아래 순서대로 진행됩니다: {list}',
+    start: '검사 시작 <span>↗</span>', bottomNote: '각 소검사는 설명과 예제 문제 후 시작됩니다. PC 또는 태블릿에서 참여해 주세요.',
+    recoveryText: '이 기기에 남아 있는 이전 검사 기록이 있습니다.', download: 'Excel 결과 다운로드',
+    downloadResultJson: '검사 결과 JSON', downloadJson: '전체 기록 JSON', footer: '한국추론능력검사 · 온라인 검사',
+    selectTask: '한 가지 이상의 소검사를 선택해 주세요.', codeError: '참가자 코드는 영문·숫자·밑줄·하이픈으로 입력해 주세요.',
+    nameError: '이름은 80자 이내로 입력해 주세요.', birthDateError: '생년월일을 올바른 날짜로 입력해 주세요. (1900년 이후)',
+    birthDateFuture: '생년월일은 검사일보다 늦을 수 없습니다.', smallScreen: '화면이 작습니다. 검사는 PC·태블릿 또는 더 큰 화면에서 진행해 주세요.',
+    frameError: '검사 화면을 불러오지 못했습니다. 인터넷 연결과 폴더 구성을 확인해 주세요.',
+    stop: '검사 중단', stopConfirm: '검사를 중단할까요?\n지금까지의 결과는 저장되며, 남은 검사는 진행되지 않습니다.',
+    taskFinished: '{name} 검사를 마쳤습니다.', nextTask: '다음 검사: {name}', nextHint: '준비가 되면 아래 버튼을 눌러 주세요.', continue: '다음 검사 시작',
+    done: '검사를 마쳤습니다.', doneStopped: '검사가 중단되었습니다.',
+    doneBody: '참여해 주셔서 감사합니다. 결과는 자동으로 저장됩니다.',
+    researchResults: '연구자용 결과 요약', summaryTask: '검사', summaryN: '실시 문항', summaryCorrect: '정반응', summaryFail: '실패(누락+오경보)', summaryScore: '총점', summaryRt: '평균 첫 반응시간',
+    savingFiles: '결과를 전송하고 있습니다…', savedFiles: '결과를 저장했습니다.',
+    queuedFiles: '결과를 전송했습니다. (저장소의 확인 응답은 받지 못했습니다. 스프레드시트에서 행이 추가되었는지 확인해 주세요.)',
+    saveFailedFiles: '결과 전송 상태를 확인해 주세요. 결과 JSON을 다운로드해 보관하세요.',
+    saveDisabled: '자동 저장 연결 전입니다(연구자 설정 ⚙). 결과 JSON을 다운로드해 주세요.', saveLocal: '결과가 이 브라우저에 보관되었습니다. 결과 JSON을 다운로드해 주세요.',
+    retry: '전송 다시 시도', newSession: '처음 화면', clearLocal: '이 기기의 기록 지우기', clearConfirm: '다운로드를 마쳤다면 이 기기의 검사 기록을 지울 수 있습니다. 지울까요?',
+    storageUnavailable: '이 브라우저에서 임시 보관이 제한됩니다. 완료 화면에서 결과 JSON을 꼭 다운로드해 주세요.',
+    noMain: '검사 기록이 없습니다.', interruptNote: '검사 중 화면 전환·창 크기 변경이 {n}회 감지되었습니다(원자료에 기록).',
+    langPending: '베트남어 버전은 준비 중입니다. 지금은 한국어로 실시해 주세요.',
+  },
+  vi: {
+    langPending: 'Phiên bản tiếng Việt đang được chuẩn bị. (베트남어 버전은 준비 중입니다.)',
+  },
+};

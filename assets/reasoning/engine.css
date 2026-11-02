@@ -1,0 +1,125 @@
+/* 한국추론능력검사 — 소검사 화면 공통 스타일 (13개 소검사가 함께 씁니다)
+   색·글꼴·헤더·버튼은 예시(지능검사) 소검사 화면과 같은 값을 씁니다. */
+html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+body { font-family: 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif; background: #f4f6fb;
+  display: flex; align-items: center; justify-content: center; }
+#jspsych-content-wrapper, .jspsych-display-element, #jspsych-content {
+  height: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important;
+  overflow: hidden !important; display: flex !important; align-items: center !important;
+  justify-content: center !important; }
+/* 고정 크기 프레임(1300×950)을 창 크기에 맞춰 통째로 축소합니다. */
+.math-wrap { width: 1300px; height: 950px; box-sizing: border-box; margin: 0; padding: 12px 70px 66px;
+  display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  transform-origin: center center; flex-shrink: 0; }
+.content-col { width: 1160px; margin: 0 auto; position: relative; }
+.math-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; min-height: 52px; }
+.math-tag { font-weight: 700; font-size: 31px; color: #1c3f94; border-left: 6px solid #2554c7; padding-left: 16px; }
+.header-right { display: flex; align-items: center; gap: 14px; }
+.math-progress { background: #2554c7; color: #fff; font-weight: 600; font-size: 20px; padding: 12px 26px; border-radius: 26px; white-space: nowrap; }
+.timer-badge { visibility: hidden; background: #fdecea; color: #c62828; border: 2px solid #f3c6c2;
+  font-weight: 700; font-size: 20px; padding: 8px 20px; border-radius: 24px; min-width: 64px; text-align: center; }
+.timer-badge.on { visibility: visible; animation: timer-pulse 1s ease-in-out infinite; }
+@keyframes timer-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.info-box { background: #fafbfe; border: 1px solid #e1e6f2; border-radius: 16px; padding: 16px 28px;
+  font-size: 25px; line-height: 1.6; color: #2b2b2b; margin-bottom: 14px; text-wrap: balance; word-break: keep-all; text-align: center; }
+.info-box b { font-weight: 800; }
+.info-box.left { text-align: left; }
+.btn-row { text-align: center; margin-top: 18px; }
+.next-btn { font-family: inherit; display: inline-block; min-width: 260px; margin: 0 10px; font-size: 28px; font-weight: 700;
+  padding: 14px 36px; border-radius: 40px; border: none; background: #2554c7; color: #fff; cursor: pointer; white-space: nowrap; }
+.next-btn:hover:not(:disabled) { background: #1c3f94; }
+.next-btn:disabled { background: #b9c7ea; cursor: default; }
+.next-btn.secondary-btn { background: #fff; color: #2554c7; border: 2px solid #2554c7; }
+.next-btn.secondary-btn:hover { background: #eaf0fd; }
+.nav-arrow-btn { width: 66px; height: 66px; border-radius: 50%; border: none; background: #2554c7; color: #fff;
+  font-size: 32px; cursor: pointer; box-shadow: 0 10px 24px rgba(37,84,199,0.35); display: flex; align-items: center; justify-content: center; }
+.nav-arrow-btn:hover { background: #1c3f94; }
+.tool-btn { font-family: inherit; font-size: 21px; font-weight: 700; padding: 10px 26px; border-radius: 30px;
+  border: 2px solid #cfd6e6; background: #fff; color: #44506b; cursor: pointer; }
+.tool-btn:hover { background: #f4f6fb; }
+.mockup-inert { pointer-events: none; user-select: none; }
+
+/* ── 타이틀 화면 (예시의 타이틀 화면 배치: 타원 배경 · 검사 배지 · 소검사명 · 설명 · 시작하기) ── */
+.title-wrap { padding: 0; }
+.title-stage { position: relative; width: 1300px; height: 950px; background: #fff; overflow: hidden; }
+.title-oval { position: absolute; left: -200px; top: 60px; width: 1180px; height: 830px; border-radius: 50%;
+  background: linear-gradient(135deg, #e3e9f8 0%, #eef2fb 60%, #f7f9fd 100%); }
+.title-text { text-align: left; position: absolute; left: 160px; top: 0; bottom: 0; width: 780px; display: flex; flex-direction: column; justify-content: center; }
+.title-badge { align-self: flex-start; background: #fff; color: #2554c7; font-weight: 700; font-size: 25px;
+  padding: 10px 36px; border-radius: 16px; box-shadow: 0 2px 8px rgba(37,84,199,.08); }
+.title-name { font-size: 58px; font-weight: 800; color: #1f2430; margin: 30px 0 26px; letter-spacing: -1px; word-break: keep-all; }
+.title-instr { font-size: 23px; line-height: 1.75; color: #33394a; word-break: keep-all; }
+.title-start { align-self: flex-start; margin-top: 40px; display: flex; align-items: center; gap: 22px; font-family: inherit;
+  background: #2554c7; color: #fff; border: none; border-radius: 16px; font-size: 27px; font-weight: 700;
+  padding: 16px 58px 16px 26px; cursor: pointer; box-shadow: 0 8px 20px rgba(37,84,199,.25); }
+.title-start:hover { background: #1c3f94; }
+.title-start .play { width: 34px; height: 34px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+.title-start .play::after { content: ""; border-left: 13px solid #2554c7; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; }
+
+/* ── 전환 화면 (예시와 같은 흰 원 + 장식) ── */
+.transition-stage { position: relative; width: 760px; height: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+.transition-cloud { position: absolute; background: #aebfe6; z-index: 0; }
+.transition-cloud.c1 { width: 230px; height: 200px; top: 30px; right: 60px; border-radius: 55% 45% 50% 50% / 60% 55% 45% 40%; }
+.transition-cloud.c2 { width: 120px; height: 120px; top: 190px; right: 0; border-radius: 50%; }
+.transition-cloud.c3 { width: 230px; height: 230px; left: 0; top: 330px; border-radius: 50%; }
+.transition-circle { position: relative; z-index: 1; width: 600px; height: 600px; border-radius: 50%; background: #fff;
+  border: 10px solid #dde6f6; display: flex; align-items: center; justify-content: center; }
+.transition-text { max-width: 460px; text-align: center; font-size: 30px; line-height: 1.6; color: #3a4a66; word-break: keep-all; }
+.transition-text b { color: #26324a; }
+.transition-badge { position: absolute; z-index: 2; right: 4px; bottom: 4px; width: 130px; height: 130px; border-radius: 50%;
+  background: #4a74c4; box-shadow: 0 0 0 10px #eef3fc; display: flex; align-items: center; justify-content: center; }
+.transition-badge svg { width: 56px; height: 56px; }
+
+/* ── 문항 화면: 자극책자 그림 + 누를 수 있는 영역 ── */
+.stage { display: flex; flex-direction: column; align-items: center; }
+.stim-box { position: relative; display: inline-block; line-height: 0; }
+.stim-box img { display: block; user-select: none; -webkit-user-drag: none; }
+.hit { position: absolute; padding: 0; margin: 0; border: none; background: transparent; cursor: pointer;
+  border-radius: 6px; touch-action: manipulation; }
+.hit:hover { background: rgba(37,84,199,.06); }
+.hit.sel { outline: 6px solid #2554c7; outline-offset: -3px; background: rgba(37,84,199,.12); }
+.hit.hl { outline: 6px solid #e53935; outline-offset: -3px; background: rgba(229,57,53,.08); }
+.hit .ord { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 76px; height: 76px; border-radius: 50%;
+  background: #2554c7; color: #fff; font-size: 42px; font-weight: 800; line-height: 76px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+.hit.hl .ord { background: #e53935; }
+.hit .tagl { position: absolute; left: 50%; top: -8px; transform: translate(-50%,-100%); white-space: nowrap; background: #2554c7; color: #fff;
+  font-size: 18px; font-weight: 700; line-height: 1; padding: 7px 12px; border-radius: 10px; }
+.hit.hl .tagl { background: #e53935; }
+.item-prompt { font-size: 32px; font-weight: 700; color: #1f2430; margin-top: 16px; line-height: 1.4; text-align: center; word-break: keep-all; }
+.below-row { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 14px; min-height: 0; }
+.slot { font-family: inherit; display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; color: #44506b; cursor: pointer;
+  background: #fff; border: 2px solid #cfd6e6; border-radius: 14px; padding: 8px 18px; }
+.slot.active { border-color: #2554c7; box-shadow: 0 0 0 3px #bcd0f7; }
+.slot .val { min-width: 150px; padding: 6px 12px; border-radius: 10px; background: #f4f6fb; color: #1c3f94; text-align: center; }
+.slot.hl { border-color: #e53935; }
+
+/* ── 글로 된 문항(언어적 추론 · 숫자연속추론 · 예측추론): 자극책자 모양을 HTML 로 재현 ── */
+.txt-card { border: 3px solid #1f2430; background: #fff; padding: 26px 40px; font-size: 27px; line-height: 1.75; color: #1f2430;
+  text-align: center; word-break: keep-all; margin: 0 auto; box-sizing: border-box; }
+.txt-card.left { text-align: left; }
+.txt-q { font-size: 27px; font-weight: 700; color: #1f2430; text-align: center; margin: 22px 0 14px; word-break: keep-all; }
+.opt-list { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.opt-list.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+.t-opt { font-family: inherit; display: flex; align-items: center; gap: 16px; text-align: left; background: #fff; border: 2px solid #c9d2e4;
+  border-radius: 14px; padding: 12px 20px; cursor: pointer; font-size: 23px; font-weight: 600; color: #1f2430; line-height: 1.4; word-break: keep-all; }
+.t-opt:hover { background: #f4f8fe; }
+.t-opt .num { flex: 0 0 40px; height: 40px; border-radius: 50%; background: #6a9ad8; color: #fff; font-weight: 700; font-size: 21px;
+  display: flex; align-items: center; justify-content: center; }
+.t-opt.sel { border-color: #2554c7; background: #eaf0fd; box-shadow: 0 0 0 3px #bcd0f7; }
+.t-opt.sel .num { background: #2554c7; }
+.t-opt.hl { border-color: #e53935; box-shadow: 0 0 0 3px #f6bcba; }
+.t-opt.hl .num { background: #e53935; }
+/* 숫자연속추론 */
+.ns-seq, .ns-opts { display: flex; justify-content: center; }
+.ns-seq .cell { width: 160px; height: 160px; border: 3px solid #1f2430; margin-left: -3px; display: flex; align-items: center; justify-content: center;
+  font-size: 84px; font-weight: 500; color: #1f2430; background: #fff; }
+.ns-opts { margin-top: 100px; }
+.ns-opts .cell { font-family: inherit; width: 150px; height: 120px; border: 3px solid #1f2430; margin-left: -3px; display: flex; align-items: center; justify-content: center;
+  font-size: 64px; color: #1f2430; background: #fff; cursor: pointer; padding: 0; position: relative; }
+.ns-opts .cell:hover { background: #f4f8fe; }
+.ns-opts .cell.sel { background: #eaf0fd; outline: 6px solid #2554c7; outline-offset: -3px; z-index: 1; }
+.ns-opts .cell.hl { outline: 6px solid #e53935; outline-offset: -3px; z-index: 1; }
+
+/* 연습 해설 화면 */
+.explain-tag { display: inline-block; background: #e53935; color: #fff; font-size: 18px; font-weight: 700; padding: 4px 14px; border-radius: 10px; margin-bottom: 6px; }
+.lang-pending { font-size: 30px; color: #3a4a66; text-align: center; }
