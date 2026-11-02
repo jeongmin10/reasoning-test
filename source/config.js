@@ -3,10 +3,10 @@
    group: core(핵심 소검사, 처음부터 선택됨) / supp(보충 소검사, 검사자가 직접 선택)
    tasks 의 순서 = 실시 순서 (개발시트 '추론능력검사 요약서' 탭 하단 '소검사 배열 순서') */
 window.BATTERY_CONFIG = {
-  version: "1.0.0-ccpi-20261102",
+  version: "1.0.1-ccpi-20261102",
   // 저장 1: Google 스프레드시트 (Apps Script 웹앱 주소, https://script.google.com/macros/s/…/exec)
   //   설정 방법: docs/GOOGLE_SHEETS_SETUP.md. 비워 두면 스프레드시트 전송을 하지 않습니다.
-  googleSheetsUrl: "",
+  googleSheetsUrl: "https://script.google.com/macros/s/AKfycbybJT5abmNr9bWCRzy3p6HDiuLgF1yRXU3I-Z__5DAQk1wDOp6ARDVN-Y5Vc5TV0BjFQA/exec",
   // 저장 2: DataPipe(OSF) 실험 ID. 공통 계정이 정해지면 입력. 비워 두면 전송하지 않습니다.
   dataPipeExperimentId: "",
   autoUpload: true,
