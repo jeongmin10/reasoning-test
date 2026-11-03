@@ -585,10 +585,16 @@ const api={workbook,base64};if(typeof module!=='undefined'&&module.exports)modul
       trials: { columns: tables[1].columns, rows: tables[1].rows.map(r => pickRow(tables[1].columns, r)) },
     };
   }
-  function files(d) { return [{ key: 'results', filename: fileNames(d).results, encoding: 'text', data: JSON.stringify(cleanResult(d), null, 2), sheets: sheetRows(d) }]; }
+  // Drive 에 저장할 파일 이름: 참가자아이디_이름_실시날짜(한국 시간, YYYY-MM-DD).json — 이름이 없으면 생략
+  function driveName(d) {
+    const date = R.koreanTime(d.started_at) ? R.koreanTime(d.started_at).slice(0, 10) : '날짜미상';
+    const clean = v => String(v || '').trim().replace(/[\\/:*?"<>|\s]+/g, '_').replace(/^_+|_+$/g, '');
+    return [clean(d.participant_id), clean(d.participant_name), date].filter(Boolean).join('_') + '.json';
+  }
+  function files(d) { return [{ key: 'results', filename: fileNames(d).results, driveName: driveName(d), encoding: 'text', data: JSON.stringify(cleanResult(d), null, 2), sheets: sheetRows(d) }]; }
   function rawSession(d) { return { ...d, csv_session_id: A.sessionId(d) }; }
   function workbookBytes(d) { return W.workbook(D.sheets([A.packet(d)])); }
-  const api = { cleanResult, fileNames, files, sheetRows, rawSession, workbookBytes };
+  const api = { cleanResult, fileNames, driveName, files, sheetRows, rawSession, workbookBytes };
   if (node) module.exports = api; else root.BatteryExport = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 </script>
@@ -611,7 +617,7 @@ async function dataPipe(session,file,request){
 // text/plain 으로 보내 사전 요청(preflight) 없이 전송합니다. 응답을 읽지 못하는 환경(CORS 차단)이면
 // no-cors 로 한 번 더 보내고 'queued'(보냄·확인 응답 없음)로 표시합니다. 같은 파일 이름은 스크립트가 중복 저장하지 않습니다.
 async function sheets(session,file,request){
- const body=JSON.stringify({filename:file.filename,sheets:file.sheets,result_json:file.data});
+ const body=JSON.stringify({filename:file.filename,drive_name:file.driveName||file.filename,sheets:file.sheets,result_json:file.data});
  try{
   const response=await request(session.googleSheetsUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body,redirect:'follow',signal:AbortSignal.timeout(45000)});
   const out=await response.json();

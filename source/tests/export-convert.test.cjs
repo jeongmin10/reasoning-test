@@ -49,3 +49,9 @@ test('스프레드시트 행: sessions 1행 · summary 소검사별 · trials �
   for (const t of Object.values(f)) for (const r of t.rows) assert.strictEqual(r.length, t.columns.length);
 });
 
+test('Drive 파일 이름: 참가자아이디_이름_실시날짜(한국 시간), 이름 없으면 생략', () => {
+  assert.strictEqual(E.driveName(session()), 'EXAMPLE_P001_예시_참가자_2026-11-02.json');
+  assert.strictEqual(E.driveName(session(undefined, { participant_name: '' })), 'EXAMPLE_P001_2026-11-02.json');
+  assert.strictEqual(E.driveName(session(undefined, { started_at: '2026-11-02T16:30:00Z' })), 'EXAMPLE_P001_예시_참가자_2026-11-03.json');
+  assert.strictEqual(E.files(session())[0].driveName, 'EXAMPLE_P001_예시_참가자_2026-11-02.json');
+});

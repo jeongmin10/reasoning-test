@@ -21,9 +21,15 @@
       trials: { columns: tables[1].columns, rows: tables[1].rows.map(r => pickRow(tables[1].columns, r)) },
     };
   }
-  function files(d) { return [{ key: 'results', filename: fileNames(d).results, encoding: 'text', data: JSON.stringify(cleanResult(d), null, 2), sheets: sheetRows(d) }]; }
+  // Drive 에 저장할 파일 이름: 참가자아이디_이름_실시날짜(한국 시간, YYYY-MM-DD).json — 이름이 없으면 생략
+  function driveName(d) {
+    const date = R.koreanTime(d.started_at) ? R.koreanTime(d.started_at).slice(0, 10) : '날짜미상';
+    const clean = v => String(v || '').trim().replace(/[\\/:*?"<>|\s]+/g, '_').replace(/^_+|_+$/g, '');
+    return [clean(d.participant_id), clean(d.participant_name), date].filter(Boolean).join('_') + '.json';
+  }
+  function files(d) { return [{ key: 'results', filename: fileNames(d).results, driveName: driveName(d), encoding: 'text', data: JSON.stringify(cleanResult(d), null, 2), sheets: sheetRows(d) }]; }
   function rawSession(d) { return { ...d, csv_session_id: A.sessionId(d) }; }
   function workbookBytes(d) { return W.workbook(D.sheets([A.packet(d)])); }
-  const api = { cleanResult, fileNames, files, sheetRows, rawSession, workbookBytes };
+  const api = { cleanResult, fileNames, driveName, files, sheetRows, rawSession, workbookBytes };
   if (node) module.exports = api; else root.BatteryExport = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

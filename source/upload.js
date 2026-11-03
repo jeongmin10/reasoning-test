@@ -17,7 +17,7 @@ async function dataPipe(session,file,request){
 // text/plain 으로 보내 사전 요청(preflight) 없이 전송합니다. 응답을 읽지 못하는 환경(CORS 차단)이면
 // no-cors 로 한 번 더 보내고 'queued'(보냄·확인 응답 없음)로 표시합니다. 같은 파일 이름은 스크립트가 중복 저장하지 않습니다.
 async function sheets(session,file,request){
- const body=JSON.stringify({filename:file.filename,sheets:file.sheets,result_json:file.data});
+ const body=JSON.stringify({filename:file.filename,drive_name:file.driveName||file.filename,sheets:file.sheets,result_json:file.data});
  try{
   const response=await request(session.googleSheetsUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body,redirect:'follow',signal:AbortSignal.timeout(45000)});
   const out=await response.json();
