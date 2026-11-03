@@ -99,7 +99,7 @@ function hitHTML(it, st) {
 function imageStage(it, st, maxH) {
   const maxW = 1160;
   let h = Math.min(maxH, maxW / it.ar), w = h * it.ar;
-  return `<div class="stage"><div class="stim-box" style="width:${w}px;height:${h}px">
+  return `<div class="stage">${it.promptTop ? `<div class="item-prompt top">${it.promptTop}</div>` : ""}<div class="stim-box" style="width:${w}px;height:${h}px">
       <img src="${it.img}" alt="" draggable="false" style="width:${w}px;height:${h}px">${hitHTML(it, st)}</div>
       ${it.prompt ? `<div class="item-prompt">${it.prompt}</div>` : ""}
       ${it.mode === "pair" ? `<div class="below-row">${slotsHTML(it, st)}</div>` : ""}
@@ -191,7 +191,9 @@ function handleClick(it, r, el) {
     r.sel[row] = id; r.history.push(id); return true;
   }
   if (it.mode === "order") {
-    if (r.sel.includes(id) || r.sel.length >= it.options.length) return false;
+    // 이미 번호가 붙은 그림을 다시 누르면 선택 취소(뒤 번호는 하나씩 당겨짐)
+    if (r.sel.includes(id)) { r.sel = r.sel.filter((x) => x !== id); r.changes++; r.history.push(`-${id}`); return true; }
+    if (r.sel.length >= it.options.length) return false;
     r.sel.push(id); r.history.push(id); return true;
   }
   if (it.mode === "pair") {
@@ -267,7 +269,7 @@ class ItemPlugin {
   trial(el, trial) {
     const it = trial.item, r = newResp(it);
     let finished = false, t0 = 0, firstT = null, timeoutId = null, tickId = null;
-    const hasExtra = it.prompt || it.mode === "pair" || it.mode === "order";
+    const hasExtra = it.prompt || it.promptTop || it.mode === "pair" || it.mode === "order";
     const maxH = hasExtra ? 640 : 700;
     el.innerHTML = `<div class="math-wrap"><div class="content-col">
         ${headerHTML(`<div class="timer-badge" id="timer-badge"></div>${trial.progress ? `<div class="math-progress">${trial.progress}</div>` : ""}`)}

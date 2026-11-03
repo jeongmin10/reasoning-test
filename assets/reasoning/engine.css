@@ -123,3 +123,5 @@ body { font-family: 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif; bac
 /* 연습 해설 화면 */
 .explain-tag { display: inline-block; background: #e53935; color: #fff; font-size: 18px; font-weight: 700; padding: 4px 14px; border-radius: 10px; margin-bottom: 6px; }
 .lang-pending { font-size: 30px; color: #3a4a66; text-align: center; }
+
+.item-prompt.top { margin: 0 0 14px; font-size: 30px; }
