@@ -102,3 +102,8 @@ body.running #experiment iframe{background:transparent}
 .selected-summary:empty{display:none}
 #change-lang{font-size:14px!important}
 .home-shell>.lang-pending{margin:0 0 18px;text-align:center}
+
+/* 로고 없음: 첫 화면 머리줄에는 언어 선택·설정만 오른쪽에. 검사 중에는 머리줄을 숨기고 검사명·진행·중단 줄은 맨 아래 */
+.site-header{justify-content:flex-end}
+body.running .site-header{display:none}
+body.running .run-header{border-top:1px solid #dde6f6;padding:8px 24px 10px}

@@ -53,6 +53,16 @@ function toCSV(columns, rows) {
   rows.forEach((r) => lines.push(columns.map((c) => csvEscape(r[c])).join(",")));
   return lines.join("\n");
 }
+// 여러 줄 문구: 줄마다 끊지 않고(문장 단위 줄바꿈) 상자 폭에 맞게 글자 크기를 줄임. 최소 크기에서도 넘치면 자연 줄바꿈
+const linesHTML = (lines) => `<div class="fit-lines">${lines.map((l) => `<div class="ln">${l}</div>`).join("")}</div>`;
+function fitLines(root, minPx = 19) {
+  root.querySelectorAll(".fit-lines").forEach((el) => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    const over = () => [...el.children].some((c) => c.scrollWidth > el.clientWidth + 1);
+    while (over() && size > minPx) { size -= 0.5; el.style.fontSize = size + "px"; }
+    if (over()) el.classList.add("wrap");
+  });
+}
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 // 이미지 미리 받기
@@ -231,7 +241,7 @@ class InfoScreenPlugin {
     if (trial.title) {
       el.innerHTML = `<div class="math-wrap title-wrap"><div class="title-stage"><div class="title-oval"></div>
         <div class="title-text"><div class="title-badge">${UI.battery}</div><div class="title-name">${T.title}</div>
-        <div class="title-instr">${T.instr}</div>
+        <div class="title-instr">${linesHTML(T.instr)}</div>
         <button class="title-start" data-i="0"><span class="play"></span>${UI.start}</button></div></div></div>`;
     } else {
       const multi = trial.buttons.length > 1;
@@ -241,7 +251,7 @@ class InfoScreenPlugin {
       el.innerHTML = `<div class="math-wrap"><div class="content-col">${headerHTML()}
         <div style="position:relative">${trial.body_html}${trial.arrow ? btns : ""}</div>${trial.arrow ? "" : btns}</div></div>`;
     }
-    applyScale();
+    applyScale(); fitLines(el);
     el.querySelectorAll("[data-i]").forEach((b) => b.addEventListener("click", () => done(trial.buttons[b.dataset.i] || UI.start)));
   }
 }
@@ -270,7 +280,7 @@ class ItemPlugin {
     const it = trial.item, r = newResp(it);
     let finished = false, t0 = 0, firstT = null, timeoutId = null, tickId = null;
     const hasExtra = it.prompt || it.promptTop || it.mode === "pair" || it.mode === "order";
-    const maxH = hasExtra ? 640 : 700;
+    const maxH = hasExtra ? 620 : 680;
     el.innerHTML = `<div class="math-wrap"><div class="content-col">
         ${headerHTML(`<div class="timer-badge" id="timer-badge"></div>${trial.progress ? `<div class="math-progress">${trial.progress}</div>` : ""}`)}
         <div id="stage-root" style="visibility:hidden"></div>
@@ -369,12 +379,12 @@ T.practice.forEach((it, k) => {
     body_html: () => {
       const res = lastPractice();
       const head = res.correct ? UI.practiceRight : UI.practiceCheck;
-      return `<div class="info-box"><div class="explain-tag">${UI.explainTag(k + 1)}</div><br>${head}<br>${it.explain}</div>
+      return `<div class="info-box explain-box"><div class="explain-tag">${UI.explainTag(k + 1)}</div><div class="explain-head">${head}</div>${linesHTML(it.explain)}</div>
         <div class="mockup-inert">${stageHTML(it, { hl: true }, it.kind === "image" ? 470 : 470)}</div>`;
     },
   });
 });
-intro.push(info(`<div class="info-box" style="font-size:30px;padding:60px 40px;line-height:1.9">${UI.readyText}</div>`,
+intro.push(info(`<div class="info-box" style="font-size:27px;padding:56px 40px;line-height:2">${linesHTML(UI.readyText)}</div>`,
   { arrow: false, buttons: [UI.replay, UI.begin] }));
 timeline.push({ timeline: intro, loop_function: (d) => { const v = d.values(); return v[v.length - 1].response === UI.replay; } });
 timeline.push({ type: jsPsychHtmlKeyboardResponse, stimulus: transitionScreen(UI.transition1), choices: "NO_KEYS", trial_duration: 2500 });

@@ -31,7 +31,7 @@
   // 있으면 그 문항을 valid_trial=false 로 표시하고, 문항이 끝난 뒤 "계속하기" 화면을 보여 줍니다.
   // (제외된 문항은 요약 계산에서 빠지고 원자료·엑셀에는 남습니다.)
   const NOTICE = {
-    ko: { text: "화면 전환이 감지되었습니다. 준비되면 계속해 주세요. 해당 문항은 기록에 표시됩니다.", btn: "계속하기" },
+    ko: { text: "화면 전환이 감지되어 이 문항은 기록에 따로 표시됩니다.<br>준비되면 '계속하기'를 눌러 주세요.", btn: "계속하기" },
     vi: { text: "Đã phát hiện chuyển màn hình. Nhấn tiếp tục khi sẵn sàng. Câu này sẽ được đánh dấu.", btn: "Tiếp tục" },
   }[lang];
   const ITEM_PHASES = /(_item|motor_test)$/;
@@ -46,7 +46,7 @@
     if (host) return;
     host = document.createElement("div"); host.id = "vit-notice";
     host.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(244,246,251,.97);display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR','Segoe UI',sans-serif;";
-    host.innerHTML = `<div style="max-width:560px;background:#fff;border:2px solid #2554c7;border-radius:20px;padding:34px 40px;text-align:center;box-shadow:0 10px 24px rgba(37,84,199,.08);"><p style="color:#1c3f94;font-size:20px;line-height:1.7;margin:0 0 22px;">${NOTICE.text}</p><button id="vit-notice-btn" style="font-size:18px;padding:12px 28px;border:0;border-radius:999px;background:#2554c7;color:#fff;cursor:pointer;">${NOTICE.btn}</button></div>`;
+    host.innerHTML = `<div style="max-width:720px;background:#fff;border:2px solid #2554c7;border-radius:20px;padding:34px 40px;text-align:center;box-shadow:0 10px 24px rgba(37,84,199,.08);"><p style="color:#1c3f94;font-size:20px;line-height:1.8;margin:0 0 22px;white-space:nowrap;">${NOTICE.text}</p><button id="vit-notice-btn" style="font-size:18px;padding:12px 28px;border:0;border-radius:999px;background:#2554c7;color:#fff;cursor:pointer;">${NOTICE.btn}</button></div>`;
     document.body.appendChild(host);
     document.getElementById("vit-notice-btn").addEventListener("click", () => { host.remove(); try { jsPsych.resumeExperiment(); } catch (e) {} });
   }

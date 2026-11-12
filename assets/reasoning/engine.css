@@ -44,7 +44,7 @@ body { font-family: 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif; bac
 .title-stage { position: relative; width: 1300px; height: 950px; background: #fff; overflow: hidden; }
 .title-oval { position: absolute; left: -200px; top: 60px; width: 1180px; height: 830px; border-radius: 50%;
   background: linear-gradient(135deg, #e3e9f8 0%, #eef2fb 60%, #f7f9fd 100%); }
-.title-text { text-align: left; position: absolute; left: 160px; top: 0; bottom: 0; width: 780px; display: flex; flex-direction: column; justify-content: center; }
+.title-text { text-align: left; position: absolute; left: 130px; top: 0; bottom: 0; width: 1040px; display: flex; flex-direction: column; justify-content: center; }
 .title-badge { align-self: flex-start; background: #fff; color: #2554c7; font-weight: 700; font-size: 25px;
   padding: 10px 36px; border-radius: 16px; box-shadow: 0 2px 8px rgba(37,84,199,.08); }
 .title-name { font-size: 58px; font-weight: 800; color: #1f2430; margin: 30px 0 26px; letter-spacing: -1px; word-break: keep-all; }
@@ -125,3 +125,11 @@ body { font-family: 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif; bac
 .lang-pending { font-size: 30px; color: #3a4a66; text-align: center; }
 
 .item-prompt.top { margin: 0 0 14px; font-size: 30px; }
+
+/* 줄 맞춤 문구 — 줄 안에서 끊지 않음(engine.js fitLines 가 글자 크기를 맞춤) */
+.fit-lines .ln { white-space: nowrap; }
+.fit-lines.wrap .ln { white-space: normal; }
+.explain-box { padding: 14px 24px 16px; }
+.explain-head { margin: 4px 0 2px; }
+/* '다음' 버튼과 자극 사이 간격 */
+.content-col > .btn-row { margin-top: 34px; }

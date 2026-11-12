@@ -10,7 +10,7 @@
 </head>
 <body>
   <!-- 첫 화면: 검사 선택 · 참가자 정보 (언어는 오른쪽 위에서 선택) -->
-  <header class="site-header" id="site-header"><a class="brand institute-brand" href="./" aria-label="(사)중앙임상심리연구소 · 처음 화면"><img class="institute-logo" src="assets/institute-logo.png" width="640" height="226" alt=""><span class="institute-name">(사)중앙임상심리연구소</span></a><div class="header-actions"><div class="language-switch" aria-label="Language"><button id="lang-ko" class="selected" lang="ko" type="button">한국어</button><button id="lang-vi" lang="vi" type="button">Tiếng Việt</button></div><button id="settings-open" class="text-button" title="연구자 설정" aria-label="연구자 설정">⚙</button></div></header>
+  <header class="site-header" id="site-header"><span class="header-spacer"></span><div class="header-actions"><div class="language-switch" aria-label="Language"><button id="lang-ko" class="selected" lang="ko" type="button">한국어</button><button id="lang-vi" lang="vi" type="button">Tiếng Việt</button></div><button id="settings-open" class="text-button" title="연구자 설정" aria-label="연구자 설정">⚙</button></div></header>
   <main id="home" class="home-shell">
     <p id="lang-pending" class="lang-pending" role="status" hidden></p>
     <div class="home-intro"><div class="eyebrow" data-i18n="eyebrow">KOREAN REASONING ABILITY TEST</div>
@@ -25,7 +25,7 @@
     <div id="recovery" hidden class="recovery"><span data-i18n="recoveryText"></span><button id="recover-download" class="text-button" data-i18n="download"></button><button id="recover-result-json" class="text-button" data-i18n="downloadResultJson"></button><button id="recover-json" class="text-button" data-i18n="downloadJson"></button></div>
     <footer><span data-i18n="footer"></span><span id="version-label"></span></footer>
   </main>
-  <section id="run-shell" hidden><div class="run-header"><span id="run-label"></span><span class="run-right"><span id="run-progress"></span><button id="run-stop" class="text-button"></button></span></div><div id="experiment"></div></section>
+  <section id="run-shell" hidden><div id="experiment"></div><div class="run-header"><span id="run-label"></span><span class="run-right"><span id="run-progress"></span><button id="run-stop" class="text-button"></button></span></div></section>
   <section id="results" hidden class="result-shell"></section>
   <dialog id="settings-dialog"><form method="dialog" class="dialog-head"><h2>연구자 설정</h2><button class="icon-button" aria-label="닫기">×</button></form><p>참가자에게 적용할 저장 설정입니다. 검사 시작 후에는 변경되지 않습니다.</p><label class="field">Google 스프레드시트 웹앱 주소 (Apps Script /exec)<input id="sheets-url" placeholder="https://script.google.com/macros/s/…/exec" maxlength="300"></label><label class="field">DataPipe Experiment ID (선택)<input id="pipe-id" placeholder="연결 전에는 비워 두세요" maxlength="80"></label><label class="check-line"><input type="checkbox" id="auto-upload" checked>검사 완료 후 자동 전송</label><details><summary>저장 방식</summary><ul><li>검사가 끝나면 결과가 자동으로 전송됩니다. 스프레드시트에는 sessions(참가자) · summary(소검사별 요약) · trials(문항별) 시트에 행이 추가되고, 결과 JSON 파일 1개가 같은 Drive 폴더에 저장됩니다.</li><li>DataPipe ID 를 넣으면 같은 결과 JSON 이 DataPipe(OSF)로도 전송됩니다.</li><li>전송이 불확실하면 결과 화면에서 JSON 을 내려받아 보관하세요. 엑셀은 json_to_excel.html 에서 만듭니다.</li></ul></details><div class="dialog-actions"><button id="save-settings" class="primary" type="button">설정 적용</button></div><p class="muted">설정은 이 브라우저에만 저장됩니다. 모든 참가자에게 적용하려면 source/config.js 에 넣고 다시 빌드하세요.</p></dialog>
   <noscript>검사를 실행하려면 JavaScript를 활성화해 주세요.</noscript>
