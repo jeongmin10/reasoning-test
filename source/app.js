@@ -13,6 +13,7 @@
   const escape = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const t = (key, vars = {}) => { let text = (BATTERY_TEXT[language] || {})[key] || BATTERY_TEXT.ko[key] || key; for (const [k, v] of Object.entries(vars)) text = text.replaceAll('{' + k + '}', String(v)); return text; };
   const taskName = task => task.name[language] || task.name.ko;
+  const available = task => !task.langs || task.langs.includes(language);   // 언어별 실시 가능 소검사
   const pick = (obj) => obj[language] || obj.ko;
   const app = { t, get session() { return session; }, get language() { return language; } };
   window.batteryApp = app;
@@ -39,12 +40,12 @@
   function renderCards() {
     const state = Object.fromEntries([...document.querySelectorAll('.task-card input')].map(i => [i.dataset.folder, i.checked]));
     const on = task => (task.folder in state ? state[task.folder] : task.group === 'core');
-    $('#core-grid').innerHTML = C.tasks.filter(x => x.group === 'core').map(x => cardHTML(x, on(x))).join('');
-    $('#supp-grid').innerHTML = C.tasks.filter(x => x.group === 'supp').map(x => cardHTML(x, on(x))).join('');
+    $('#core-grid').innerHTML = C.tasks.filter(x => x.group === 'core' && available(x)).map(x => cardHTML(x, on(x))).join('');
+    $('#supp-grid').innerHTML = C.tasks.filter(x => x.group === 'supp' && available(x)).map(x => cardHTML(x, on(x))).join('');
     document.querySelectorAll('.task-card input').forEach(i => { i.onchange = updateSummary; });
     updateSummary();
   }
-  function selectedTasks() { return C.tasks.filter(task => $('#select-' + task.folder)?.checked); }
+  function selectedTasks() { return C.tasks.filter(task => available(task) && $('#select-' + task.folder)?.checked); }
   function updateSummary() {
     const sel = selectedTasks();
     $('#selected-summary').textContent = sel.length ? t('selectedSummary', { n: sel.length, c: sel.filter(x => x.group === 'core').length, s: sel.filter(x => x.group === 'supp').length, list: sel.map(taskName).join(' → ') }) : '';

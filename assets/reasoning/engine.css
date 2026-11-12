@@ -133,3 +133,11 @@ body { font-family: 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif; bac
 .explain-head { margin: 4px 0 2px; }
 /* '다음' 버튼과 자극 사이 간격 */
 .content-col > .btn-row { margin-top: 34px; }
+
+/* 베트남어: 성조 부호가 온전한 글꼴 우선 */
+html[lang="vi"] body, html[lang="vi"] button { font-family: 'Segoe UI', 'Noto Sans', Roboto, Arial, sans-serif; }
+/* 길이 전이 베트남어 질문 줄의 사물 아이콘 */
+.item-prompt .q-icon { height: 64px; width: auto; vertical-align: middle; margin: 0 6px; }
+
+.title-name { line-height: 1.15; }
+.fit-lines.wrap .ln + .ln { margin-top: 4px; }

@@ -55,7 +55,7 @@ function toCSV(columns, rows) {
 }
 // 여러 줄 문구: 줄마다 끊지 않고(문장 단위 줄바꿈) 상자 폭에 맞게 글자 크기를 줄임. 최소 크기에서도 넘치면 자연 줄바꿈
 const linesHTML = (lines) => `<div class="fit-lines">${lines.map((l) => `<div class="ln">${l}</div>`).join("")}</div>`;
-function fitLines(root, minPx = 19) {
+function fitLines(root, minPx = T.lang === "vi" ? 22 : 19) {   // 베트남어는 문장이 길어 덜 줄이고 줄바꿈
   root.querySelectorAll(".fit-lines").forEach((el) => {
     let size = parseFloat(getComputedStyle(el).fontSize);
     const over = () => [...el.children].some((c) => c.scrollWidth > el.clientWidth + 1);

@@ -32,7 +32,7 @@
   // (제외된 문항은 요약 계산에서 빠지고 원자료·엑셀에는 남습니다.)
   const NOTICE = {
     ko: { text: "화면 전환이 감지되어 이 문항은 기록에 따로 표시됩니다.<br>준비되면 '계속하기'를 눌러 주세요.", btn: "계속하기" },
-    vi: { text: "Đã phát hiện chuyển màn hình. Nhấn tiếp tục khi sẵn sàng. Câu này sẽ được đánh dấu.", btn: "Tiếp tục" },
+    vi: { text: "Đã phát hiện chuyển màn hình nên câu này sẽ được đánh dấu riêng trong dữ liệu.<br>Khi sẵn sàng, hãy nhấn 'Tiếp tục'.", btn: "Tiếp tục" },
   }[lang];
   const ITEM_PHASES = /(_item|motor_test)$/;
   let interruptions = 0;

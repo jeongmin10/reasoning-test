@@ -107,3 +107,5 @@ body.running #experiment iframe{background:transparent}
 .site-header{justify-content:flex-end}
 body.running .site-header{display:none}
 body.running .run-header{border-top:1px solid #dde6f6;padding:8px 24px 10px}
+
+html[lang="vi"] body{font-family:"Segoe UI","Noto Sans",Roboto,Arial,sans-serif}

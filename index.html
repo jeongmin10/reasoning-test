@@ -114,6 +114,8 @@ body.running #experiment iframe{background:transparent}
 .site-header{justify-content:flex-end}
 body.running .site-header{display:none}
 body.running .run-header{border-top:1px solid #dde6f6;padding:8px 24px 10px}
+
+html[lang="vi"] body{font-family:"Segoe UI","Noto Sans",Roboto,Arial,sans-serif}
 </style>
 
 </head>
@@ -141,6 +143,7 @@ body.running .run-header{border-top:1px solid #dde6f6;padding:8px 24px 10px}
 <script>/* 연구자 설정 — 검사 목록·표시 문구·저장 주소는 이 파일만 고치면 됩니다.
    folder 는 ko/·vi/ 아래의 소검사 폴더 이름이고, code 는 결과 JSON 의 검사 코드입니다.
    group: core(핵심 소검사, 처음부터 선택됨) / supp(보충 소검사, 검사자가 직접 선택)
+   langs: 실시 가능한 언어(없으면 전부). 단어유추·언어 단서 결합은 베트남어판 제외
    tasks 의 순서 = 실시 순서 (개발시트 '추론능력검사 요약서' 탭 하단 '소검사 배열 순서') */
 window.BATTERY_CONFIG = {
   version: "1.0.1-ccpi-20261102",
@@ -151,60 +154,60 @@ window.BATTERY_CONFIG = {
   dataPipeExperimentId: "",
   autoUpload: true,
   defaultLanguage: "ko",
-  languages: { ko: true, vi: false },   // vi 는 베트남어 버전 제작 후 true 로
+  languages: { ko: true, vi: true },
   tasks: [
     { folder: "picture_concepts", code: "PC", number: "01", group: "core",
-      name: { ko: "공통그림찾기", vi: "" },
-      desc: { ko: "여러 그림에서 공통된 속성을 찾아 하나의 개념으로 묶는 능력을 측정하는 검사입니다.", vi: "" },
-      meta: { ko: "양적·순차 추론 · 20문항", vi: "" } },
+      name: { ko: "공통그림찾기", vi: "Tìm điểm chung của tranh" },
+      desc: { ko: "여러 그림에서 공통된 속성을 찾아 하나의 개념으로 묶는 능력을 측정하는 검사입니다.", vi: "Bài kiểm tra đo khả năng tìm ra thuộc tính chung trong nhiều bức tranh và gộp chúng thành một khái niệm." },
+      meta: { ko: "양적·순차 추론 · 20문항", vi: "Suy luận định lượng·tuần tự · 20 câu" } },
     { folder: "problem_solving", code: "PS", number: "02", group: "core",
-      name: { ko: "문제해결", vi: "" },
-      desc: { ko: "그림 속 사회적·일상적 문제 상황을 파악하고 해결 방법을 추론하는 능력을 측정하는 검사입니다.", vi: "" },
-      meta: { ko: "사회성 추론 · 20문항", vi: "" } },
+      name: { ko: "문제해결", vi: "Giải quyết vấn đề" },
+      desc: { ko: "그림 속 사회적·일상적 문제 상황을 파악하고 해결 방법을 추론하는 능력을 측정하는 검사입니다.", vi: "Bài kiểm tra đo khả năng nắm bắt tình huống có vấn đề trong xã hội và đời sống hằng ngày qua tranh, và suy luận cách giải quyết." },
+      meta: { ko: "사회성 추론 · 20문항", vi: "Suy luận xã hội · 20 câu" } },
     { folder: "raven", code: "RPM", number: "03", group: "core",
-      name: { ko: "레이븐 추론", vi: "" },
-      desc: { ko: "도형 사이의 관계와 변화 규칙을 분석해 빈칸에 들어갈 그림을 고르는 검사입니다.", vi: "" },
-      meta: { ko: "관계성 추론 · 20문항", vi: "" } },
-    { folder: "verbal_cue", code: "VCI", number: "04", group: "core",
+      name: { ko: "레이븐 추론", vi: "Suy luận Raven" },
+      desc: { ko: "도형 사이의 관계와 변화 규칙을 분석해 빈칸에 들어갈 그림을 고르는 검사입니다.", vi: "Bài kiểm tra phân tích mối quan hệ và quy luật biến đổi giữa các hình để chọn hình phù hợp với ô trống." },
+      meta: { ko: "관계성 추론 · 20문항", vi: "Suy luận quan hệ · 20 câu" } },
+    { folder: "verbal_cue", langs: ["ko"], code: "VCI", number: "04", group: "core",
       name: { ko: "언어 단서 결합 추론 과제", vi: "" },
       desc: { ko: "설명에 담긴 여러 언어 단서를 함께 유지·통합해 조건에 맞는 것을 고르는 검사입니다.", vi: "" },
       meta: { ko: "언어성 추론 · 20문항", vi: "" } },
     { folder: "pattern", code: "PT", number: "05", group: "core",
-      name: { ko: "패턴 검사_반복/성장", vi: "" },
-      desc: { ko: "반복되거나 점점 변하는 패턴의 규칙을 찾아 다음에 올 그림을 고르는 검사입니다.", vi: "" },
-      meta: { ko: "양적·순차 추론 · 20문항", vi: "" } },
-    { folder: "analogy", code: "VA", number: "06", group: "core",
+      name: { ko: "패턴 검사_반복/성장", vi: "Bài kiểm tra mẫu hình_Lặp lại/Phát triển" },
+      desc: { ko: "반복되거나 점점 변하는 패턴의 규칙을 찾아 다음에 올 그림을 고르는 검사입니다.", vi: "Bài kiểm tra tìm quy luật của mẫu hình lặp lại hoặc thay đổi dần để chọn hình tiếp theo." },
+      meta: { ko: "양적·순차 추론 · 20문항", vi: "Suy luận định lượng·tuần tự · 20 câu" } },
+    { folder: "analogy", langs: ["ko"], code: "VA", number: "06", group: "core",
       name: { ko: "A:B = C:D (단어유추)", vi: "" },
       desc: { ko: "두 단어의 관계를 파악해 같은 관계가 되는 단어를 고르는 검사입니다.", vi: "" },
       meta: { ko: "언어성 추론 · 20문항", vi: "" } },
     { folder: "rotation", code: "ROT", number: "07", group: "core",
-      name: { ko: "3차원 회전", vi: "" },
-      desc: { ko: "입체 도형을 머릿속으로 돌려 나올 수 있는 모습을 고르는 검사입니다.", vi: "" },
-      meta: { ko: "관계성 추론 · 20문항", vi: "" } },
+      name: { ko: "3차원 회전", vi: "Xoay hình 3 chiều" },
+      desc: { ko: "입체 도형을 머릿속으로 돌려 나올 수 있는 모습을 고르는 검사입니다.", vi: "Bài kiểm tra xoay hình khối trong đầu để chọn hình dạng có thể xuất hiện." },
+      meta: { ko: "관계성 추론 · 20문항", vi: "Suy luận quan hệ · 20 câu" } },
     { folder: "picture_arrangement", code: "PA", number: "08", group: "core",
-      name: { ko: "차례맞추기", vi: "" },
-      desc: { ko: "섞여 있는 그림을 이야기 순서에 맞게 배열하는 검사입니다.", vi: "" },
-      meta: { ko: "사회성 추론 · 20문항", vi: "" } },
+      name: { ko: "차례맞추기", vi: "Sắp xếp tranh theo thứ tự" },
+      desc: { ko: "섞여 있는 그림을 이야기 순서에 맞게 배열하는 검사입니다.", vi: "Bài kiểm tra sắp xếp các bức tranh bị xáo trộn theo đúng thứ tự câu chuyện." },
+      meta: { ko: "사회성 추론 · 20문항", vi: "Suy luận xã hội · 20 câu" } },
     { folder: "dls", code: "DLS", number: "09", group: "supp",
-      name: { ko: "더비셔 언어 체계 검사", vi: "" },
-      desc: { ko: "질문에 담긴 의미 단서를 이해해 맞는 그림을 고르는 검사입니다. (유아용)", vi: "" },
-      meta: { ko: "만 2~5세 · 20문항", vi: "" } },
+      name: { ko: "더비셔 언어 체계 검사", vi: "Thang đo ngôn ngữ Derbyshire" },
+      desc: { ko: "질문에 담긴 의미 단서를 이해해 맞는 그림을 고르는 검사입니다. (유아용)", vi: "Bài kiểm tra hiểu manh mối ý nghĩa trong câu hỏi để chọn bức tranh phù hợp. (dành cho trẻ mầm non)" },
+      meta: { ko: "만 2~5세 · 20문항", vi: "2–5 tuổi · 20 câu" } },
     { folder: "verbal_reasoning", code: "VR", number: "10", group: "supp",
-      name: { ko: "언어적 추론", vi: "" },
-      desc: { ko: "글에 나온 조건을 바탕으로 확실하게 알 수 있는 결론을 고르는 검사입니다.", vi: "" },
-      meta: { ko: "만 6~11세 · 20문항", vi: "" } },
+      name: { ko: "언어적 추론", vi: "Suy luận ngôn ngữ" },
+      desc: { ko: "글에 나온 조건을 바탕으로 확실하게 알 수 있는 결론을 고르는 검사입니다.", vi: "Bài kiểm tra chọn kết luận chắc chắn có thể biết được dựa trên các điều kiện trong đoạn văn." },
+      meta: { ko: "만 6~11세 · 20문항", vi: "6–11 tuổi · 20 câu" } },
     { folder: "number_series", code: "NS", number: "11", group: "supp",
-      name: { ko: "숫자연속추론", vi: "" },
-      desc: { ko: "숫자 배열의 규칙을 찾아 다음에 올 숫자를 고르는 검사입니다.", vi: "" },
-      meta: { ko: "만 6~11세 · 20문항", vi: "" } },
+      name: { ko: "숫자연속추론", vi: "Suy luận dãy số" },
+      desc: { ko: "숫자 배열의 규칙을 찾아 다음에 올 숫자를 고르는 검사입니다.", vi: "Bài kiểm tra tìm quy luật của dãy số để chọn số tiếp theo." },
+      meta: { ko: "만 6~11세 · 20문항", vi: "6–11 tuổi · 20 câu" } },
     { folder: "predictive", code: "PI", number: "12", group: "supp",
-      name: { ko: "예측추론 과제", vi: "" },
-      desc: { ko: "인물의 반복된 행동 성향을 파악해 새로운 상황에서의 행동을 예측하는 검사입니다.", vi: "" },
-      meta: { ko: "만 6~11세 · 20문항", vi: "" } },
+      name: { ko: "예측추론 과제", vi: "Bài tập suy luận dự đoán" },
+      desc: { ko: "인물의 반복된 행동 성향을 파악해 새로운 상황에서의 행동을 예측하는 검사입니다.", vi: "Bài kiểm tra nắm bắt khuynh hướng hành vi lặp lại của nhân vật để dự đoán hành vi trong tình huống mới." },
+      meta: { ko: "만 6~11세 · 20문항", vi: "6–11 tuổi · 20 câu" } },
     { folder: "transitivity", code: "PTT", number: "13", group: "supp",
-      name: { ko: "물리적 길이 전이 과제", vi: "" },
-      desc: { ko: "길이 비교 관계를 연결해 직접 비교되지 않은 사물의 길이를 판단하는 검사입니다.", vi: "" },
-      meta: { ko: "만 6~11세 · 20문항", vi: "" } },
+      name: { ko: "물리적 길이 전이 과제", vi: "Bài tập suy luận bắc cầu về độ dài" },
+      desc: { ko: "길이 비교 관계를 연결해 직접 비교되지 않은 사물의 길이를 판단하는 검사입니다.", vi: "Bài kiểm tra nối các quan hệ so sánh độ dài để phán đoán độ dài của những đồ vật không được so sánh trực tiếp." },
+      meta: { ko: "만 6~11세 · 20문항", vi: "6–11 tuổi · 20 câu" } },
   ],
 };
 </script>
@@ -667,7 +670,7 @@ if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.Batt
 })(typeof globalThis!=='undefined'?globalThis:this);
 </script>
 <script>/* 셸(표지·언어 선택·첫 화면·결과 화면)의 문구. 소검사 안의 문구는 ko/·vi/ 각 검사 폴더의 data.js 에 있습니다.
-   vi 는 베트남어 버전 제작 시 채웁니다(비어 있는 항목은 한국어로 표시). */
+   vi: 번역 시트 '온라인 검사 베트남어 번역'(비어 있는 항목은 한국어로 표시). */
 window.BATTERY_TEXT = {
   ko: {
     pageTitle: '한국추론능력검사', eyebrow: 'KOREAN REASONING ABILITY TEST', title: '한국추론능력검사',
@@ -701,7 +704,66 @@ window.BATTERY_TEXT = {
     langPending: '베트남어 버전은 준비 중입니다. 지금은 한국어로 실시해 주세요.',
   },
   vi: {
-    langPending: 'Phiên bản tiếng Việt đang được chuẩn bị. (베트남어 버전은 준비 중입니다.)',
+    eyebrow: "REASONING ABILITY TEST",
+    pageTitle: "Bài kiểm tra Năng lực Suy luận",
+    title: "Bài kiểm tra Năng lực Suy luận",
+    lead: "6 bài kiểm tra cốt lõi được thực hiện cho mọi lứa tuổi,<br>các bài kiểm tra bổ sung được chọn và thực hiện phù hợp với độ tuổi.",
+    coreTitle: "Bài kiểm tra cốt lõi",
+    coreHint: "Thực hiện cho mọi lứa tuổi · Tất cả đã được chọn sẵn.",
+    suppTitle: "Bài kiểm tra bổ sung",
+    suppHint: "Hãy nhấn để chọn các bài kiểm tra bổ sung phù hợp với độ tuổi. (Derbyshire: 2–5 tuổi / các bài còn lại: 6–11 tuổi)",
+    changeLanguage: "Đổi ngôn ngữ",
+    participantHeading: "Thông tin người tham gia",
+    participant: "Mã số *",
+    codeHint: "Vui lòng nhập mã số (chữ cái Latin và số) do nhà nghiên cứu cấp.",
+    participantName: "Họ và tên (không bắt buộc)",
+    nameHint: "Chỉ dùng để xem kết quả cá nhân. Không đưa vào bảng dữ liệu phân tích.",
+    birthDate: "Ngày sinh *",
+    birthHint: "Tự động tính tuổi tròn và tổng số tháng tuổi tại ngày kiểm tra.",
+    selectedSummary: "Số bài kiểm tra sẽ thực hiện: {n} (cốt lõi {c} · bổ sung {s}) · Thực hiện theo thứ tự sau: {list}",
+    start: "Bắt đầu kiểm tra <span>↗</span>",
+    bottomNote: "Mỗi bài kiểm tra bắt đầu sau phần hướng dẫn và câu ví dụ. Vui lòng sử dụng máy tính hoặc máy tính bảng.",
+    recoveryText: "Thiết bị này còn lưu dữ liệu kiểm tra trước đó.",
+    download: "Tải kết quả Excel",
+    downloadResultJson: "JSON kết quả kiểm tra",
+    downloadJson: "JSON toàn bộ dữ liệu",
+    footer: "Bài kiểm tra Năng lực Suy luận · Kiểm tra trực tuyến",
+    selectTask: "Vui lòng chọn ít nhất một bài kiểm tra.",
+    codeError: "Mã người tham gia chỉ gồm chữ cái Latin, số, dấu gạch dưới hoặc gạch nối.",
+    nameError: "Họ và tên không được vượt quá 80 ký tự.",
+    birthDateError: "Vui lòng nhập ngày sinh hợp lệ. (từ năm 1900 trở đi)",
+    birthDateFuture: "Ngày sinh không thể sau ngày kiểm tra.",
+    smallScreen: "Màn hình quá nhỏ. Vui lòng thực hiện trên máy tính, máy tính bảng hoặc màn hình lớn hơn.",
+    frameError: "Không thể tải màn hình kiểm tra. Vui lòng kiểm tra kết nối Internet và cấu trúc thư mục.",
+    stop: "Dừng kiểm tra",
+    stopConfirm: "Bạn có muốn dừng kiểm tra không?\nKết quả đến thời điểm này sẽ được lưu, các bài còn lại sẽ không được thực hiện.",
+    taskFinished: "Đã hoàn thành bài {name}.",
+    nextTask: "Bài tiếp theo: {name}",
+    nextHint: "Khi sẵn sàng, hãy nhấn nút bên dưới.",
+    continue: "Bắt đầu bài tiếp theo",
+    done: "Đã hoàn thành bài kiểm tra.",
+    doneStopped: "Bài kiểm tra đã bị dừng.",
+    doneBody: "Cảm ơn bạn đã tham gia. Kết quả được lưu tự động.",
+    researchResults: "Tóm tắt kết quả dành cho nhà nghiên cứu",
+    summaryTask: "Bài kiểm tra",
+    summaryN: "Số câu đã thực hiện",
+    summaryCorrect: "Phản hồi đúng",
+    summaryFail: "Thất bại (bỏ sót + báo động nhầm)",
+    summaryScore: "Tổng điểm",
+    summaryRt: "Thời gian phản hồi đầu tiên trung bình",
+    savingFiles: "Đang gửi kết quả…",
+    savedFiles: "Đã lưu kết quả.",
+    queuedFiles: "Đã gửi kết quả. (Chưa nhận được xác nhận từ nơi lưu trữ. Vui lòng kiểm tra xem hàng dữ liệu đã được thêm vào bảng tính chưa.)",
+    saveFailedFiles: "Vui lòng kiểm tra trạng thái gửi kết quả. Hãy tải và lưu giữ tệp JSON kết quả.",
+    saveDisabled: "Chưa kết nối lưu tự động (Cài đặt của nhà nghiên cứu ⚙). Vui lòng tải tệp JSON kết quả.",
+    saveLocal: "Kết quả đã được lưu trong trình duyệt này. Vui lòng tải tệp JSON kết quả.",
+    retry: "Gửi lại",
+    newSession: "Về màn hình đầu",
+    clearLocal: "Xóa dữ liệu trên thiết bị này",
+    clearConfirm: "Nếu đã tải xong, bạn có thể xóa dữ liệu kiểm tra trên thiết bị này. Xóa bây giờ?",
+    storageUnavailable: "Trình duyệt này hạn chế lưu tạm. Hãy nhớ tải tệp JSON kết quả ở màn hình hoàn thành.",
+    noMain: "Không có dữ liệu kiểm tra.",
+    interruptNote: "Đã phát hiện {n} lần chuyển màn hình hoặc thay đổi kích thước cửa sổ trong khi kiểm tra (được ghi vào dữ liệu gốc).",
   },
 };
 </script>
@@ -720,6 +782,7 @@ window.BATTERY_TEXT = {
   const escape = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const t = (key, vars = {}) => { let text = (BATTERY_TEXT[language] || {})[key] || BATTERY_TEXT.ko[key] || key; for (const [k, v] of Object.entries(vars)) text = text.replaceAll('{' + k + '}', String(v)); return text; };
   const taskName = task => task.name[language] || task.name.ko;
+  const available = task => !task.langs || task.langs.includes(language);   // 언어별 실시 가능 소검사
   const pick = (obj) => obj[language] || obj.ko;
   const app = { t, get session() { return session; }, get language() { return language; } };
   window.batteryApp = app;
@@ -746,12 +809,12 @@ window.BATTERY_TEXT = {
   function renderCards() {
     const state = Object.fromEntries([...document.querySelectorAll('.task-card input')].map(i => [i.dataset.folder, i.checked]));
     const on = task => (task.folder in state ? state[task.folder] : task.group === 'core');
-    $('#core-grid').innerHTML = C.tasks.filter(x => x.group === 'core').map(x => cardHTML(x, on(x))).join('');
-    $('#supp-grid').innerHTML = C.tasks.filter(x => x.group === 'supp').map(x => cardHTML(x, on(x))).join('');
+    $('#core-grid').innerHTML = C.tasks.filter(x => x.group === 'core' && available(x)).map(x => cardHTML(x, on(x))).join('');
+    $('#supp-grid').innerHTML = C.tasks.filter(x => x.group === 'supp' && available(x)).map(x => cardHTML(x, on(x))).join('');
     document.querySelectorAll('.task-card input').forEach(i => { i.onchange = updateSummary; });
     updateSummary();
   }
-  function selectedTasks() { return C.tasks.filter(task => $('#select-' + task.folder)?.checked); }
+  function selectedTasks() { return C.tasks.filter(task => available(task) && $('#select-' + task.folder)?.checked); }
   function updateSummary() {
     const sel = selectedTasks();
     $('#selected-summary').textContent = sel.length ? t('selectedSummary', { n: sel.length, c: sel.filter(x => x.group === 'core').length, s: sel.filter(x => x.group === 'supp').length, list: sel.map(taskName).join(' → ') }) : '';

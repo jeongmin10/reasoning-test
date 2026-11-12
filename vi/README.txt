@@ -1,6 +1,6 @@
-베트남어(vi) 버전 소검사 폴더 자리입니다.
-베트남어 버전을 만들 때 ko/<검사>/ 폴더를 그대로 복사해 vi/<검사>/ 로 두고,
-data.js 의 문구(지시문·해설·선지·window.TASK.ui)와 "lang": "vi" 를 바꾼 뒤,
-글자가 들어간 그림(images/)을 베트남어 그림으로 바꾸면 됩니다.
-마지막으로 source/config.js 의 languages.vi 를 true 로, 각 검사의 name/desc/meta 의 vi 를 채우고
-source/i18n.js 의 vi 문구를 채운 다음 node source/build-single.cjs 로 index.html 을 다시 만드세요.
+베트남어(vi) 버전 소검사 폴더입니다. (tools/build_vi.py 로 생성)
+- 번역 출처: 개발 시트 '온라인 검사 베트남어 번역' 탭
+- 제외: 단어유추(analogy)·언어 단서 결합 추론(verbal_cue) — 첫 화면에도 표시되지 않음(source/config.js 의 langs)
+- 결과(난이도·문항 번호·정답·검사명 등)는 한국어판과 같은 값으로 저장됩니다.
+- 물리적 길이 전이: 그림 아래 한국어 질문 줄을 잘라내고, 베트남어 질문을 사물 아이콘과 함께 화면 글자로 표시합니다.
+번역을 고칠 때: 시트를 고친 뒤 vi_rows.json 을 다시 만들고 python3 tools/build_vi.py 를 실행하세요.
