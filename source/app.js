@@ -86,6 +86,8 @@
     const next = queue[qIndex + 1], done = queue[qIndex];
     frame = null;
     $('#experiment').innerHTML = `<div class="between"><h2>${escape(t('taskFinished', { name: taskName(done) }))}</h2><p>${escape(t('nextTask', { name: taskName(next) }))}<br>${escape(t('nextHint'))}</p><button class="primary" id="between-next">${escape(t('continue'))}</button></div>`;
+    { const h = $('.between h2'); let size = parseFloat(getComputedStyle(h).fontSize);   // 제목은 한 줄: 넘치면 글자 크기를 줄임
+      while (h.scrollWidth > h.clientWidth + 1 && size > 16) { size -= 1; h.style.fontSize = size + 'px'; } }
     $('#between-next').onclick = () => runTask(qIndex + 1);
   }
   window.addEventListener('message', ev => {

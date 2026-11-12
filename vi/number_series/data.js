@@ -43,8 +43,10 @@ window.TASK = {
    ],
    "answer": "2",
    "explain": [
-    "Nhìn các con số, sau 1 là 2. Bài này có quy luật mỗi số tăng thêm một.",
-    "Vì vậy sau 1 là 2, rồi tiếp theo phải là 3. Do đó số ở ô trống là 3."
+    "Nhìn các con số, sau 1 là 2.",
+    "Bài này có quy luật mỗi số tăng thêm một.",
+    "Vì vậy sau 1 là 2, rồi tiếp theo phải là 3.",
+    "Do đó số ở ô trống là 3."
    ]
   },
   {
@@ -79,8 +81,10 @@ window.TASK = {
    ],
    "answer": "2",
    "explain": [
-    "Nhìn các con số, sau 2 là 4, rồi tiếp theo là 6. Bài này có quy luật mỗi số tăng thêm hai.",
-    "Vì vậy sau 2 là 4, sau đó là 6, rồi tiếp theo phải là 8. Do đó số ở ô trống là 8."
+    "Nhìn các con số, sau 2 là 4, rồi tiếp theo là 6.",
+    "Bài này có quy luật mỗi số tăng thêm hai.",
+    "Vì vậy sau 2 là 4, sau đó là 6, rồi tiếp theo phải là 8.",
+    "Do đó số ở ô trống là 8."
    ]
   }
  ],

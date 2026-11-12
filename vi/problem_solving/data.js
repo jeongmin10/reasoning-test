@@ -42,7 +42,8 @@ window.TASK = {
    ],
    "answer": "2",
    "explain": [
-    "Nhìn tranh, có rác ở trên bàn. Bức tranh thứ nhất là cảnh đi ngang qua, bức tranh thứ hai là cảnh nhặt rác bỏ vào thùng rác.",
+    "Nhìn tranh, có rác ở trên bàn.",
+    "Bức tranh thứ nhất là cảnh đi ngang qua, bức tranh thứ hai là cảnh nhặt rác bỏ vào thùng rác.",
     "Để giải quyết tình huống này, cần làm giống như bức tranh thứ hai."
    ]
   },
@@ -94,8 +95,10 @@ window.TASK = {
    ],
    "answer": "1",
    "explain": [
-    "Nhìn tranh, cái cốc ở mép bàn nên có thể bị rơi. Bức tranh thứ nhất là cảnh đặt cốc lại để cốc không bị rơi, bức tranh thứ hai là cảnh đang chụp ảnh.",
-    "Bức tranh thứ ba là cảnh đẩy cho cốc rơi xuống, bức tranh thứ tư là cảnh đứng yên nhìn. Để giải quyết tình huống này, cần làm giống như bức tranh thứ nhất."
+    "Nhìn tranh, cái cốc ở mép bàn nên có thể bị rơi.",
+    "Bức tranh thứ nhất là cảnh đặt cốc lại để cốc không bị rơi, bức tranh thứ hai là cảnh đang chụp ảnh.",
+    "Bức tranh thứ ba là cảnh đẩy cho cốc rơi xuống, bức tranh thứ tư là cảnh đứng yên nhìn.",
+    "Để giải quyết tình huống này, cần làm giống như bức tranh thứ nhất."
    ]
   }
  ],

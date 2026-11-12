@@ -54,14 +54,60 @@ function toCSV(columns, rows) {
   return lines.join("\n");
 }
 // 여러 줄 문구: 줄마다 끊지 않고(문장 단위 줄바꿈) 상자 폭에 맞게 글자 크기를 줄임. 최소 크기에서도 넘치면 자연 줄바꿈
-const linesHTML = (lines) => `<div class="fit-lines">${lines.map((l) => `<div class="ln">${l}</div>`).join("")}</div>`;
+//   pack=true: 문장 목록을 받아 한 줄에 들어가는 만큼 이어 붙임(베트남어 해설)
+//   noShrink=true: 글자 크기는 그대로 두고 줄만 나눔(베트남어 예측추론 지문)
+const linesHTML = (lines, pack = false, noShrink = false) =>
+  `<div class="fit-lines"${pack ? " data-pack" : ""}${noShrink ? " data-noshrink" : ""}>${lines.map((l) => `<div class="ln">${l}</div>`).join("")}</div>`;
 function fitLines(root, minPx = T.lang === "vi" ? 22 : 19) {   // 베트남어는 문장이 길어 덜 줄이고 줄바꿈
   root.querySelectorAll(".fit-lines").forEach((el) => {
+    if (T.lang === "vi") return layoutVi(el, minPx);
     let size = parseFloat(getComputedStyle(el).fontSize);
     const over = () => [...el.children].some((c) => c.scrollWidth > el.clientWidth + 1);
     while (over() && size > minPx) { size -= 0.5; el.style.fontSize = size + "px"; }
     if (over()) el.classList.add("wrap");
   });
+}
+// 베트남어: 실제 화면 폭을 재서 줄을 나눔. 넘치는 줄은 문장 끝 → 쉼표 → 띄어쓰기 순으로, 들어가는 가장 뒤쪽 위치에서 끊음
+function layoutVi(el, minPx) {
+  if (!el._src) { el._src = [...el.children].map((c) => c.innerHTML); el._base = parseFloat(getComputedStyle(el).fontSize); }
+  const src = el._src, pack = el.hasAttribute("data-pack");
+  const floor = el.hasAttribute("data-noshrink") ? el._base : Math.min(pack ? 19 : minPx, el._base);   // 해설은 4줄 안에 들도록 19px까지
+  const W = el.clientWidth;
+  const probe = document.createElement("div");
+  probe.className = "ln"; probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;display:inline-block;width:auto";
+  el.appendChild(probe);
+  const fits = (h) => { probe.innerHTML = h; return probe.offsetWidth <= W + 1; };
+  const cut = (h) => {
+    if (fits(h)) return [h];
+    for (const re of [/[.?!](?=\s)/g, /,(?=\s)/g, /\s/g]) {
+      if (re.source === "\\s" && h.includes("<")) break;   // 태그 안에서 자르지 않음
+      let best = -1, m;
+      re.lastIndex = 0;
+      while ((m = re.exec(h))) { const end = re.source === "\\s" ? m.index : m.index + 1; if (end > 0 && fits(h.slice(0, end))) best = end; }
+      if (best > 0) return [h.slice(0, best).trim(), ...cut(h.slice(best).trim())];
+    }
+    return [h];
+  };
+  const layout = () => {
+    let lines = src;
+    if (pack) {
+      lines = []; let cur = "";
+      src.forEach((x) => { const c = cur ? cur + " " + x : x; if (!cur || fits(c)) cur = c; else { lines.push(cur); cur = x; } });
+      if (cur) lines.push(cur);
+    }
+    return lines.flatMap(cut);
+  };
+  const maxLines = Math.max(4, src.length);
+  let size = el._base, lines;
+  for (;;) {
+    el.style.fontSize = size + "px";
+    lines = layout();
+    if ((lines.length <= maxLines && lines.every(fits)) || size <= floor) break;
+    size = Math.max(floor, size - 1);
+  }
+  probe.remove();
+  el.innerHTML = lines.map((l) => `<div class="ln">${l}</div>`).join("");
+  if ([...el.children].some((c) => c.scrollWidth > el.clientWidth + 1)) el.classList.add("wrap");
 }
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -133,11 +179,11 @@ function textStage(it, st) {
   }
   const ops = it.options.map((o) => `<button class="t-opt ${cls(o.id)}" data-id="${o.id}"><span class="num">${o.id}</span><span>${esc(o.text)}</span></button>`).join("");
   if (it.kind === "vr") {
-    return `<div class="stage" style="width:100%"><div class="txt-card" style="width:820px">${it.premise.map(esc).join("<br>")}</div>
+    return `<div class="stage" style="width:100%"><div class="txt-card" style="width:820px">${T.lang === "vi" ? linesHTML(it.premise.map(esc), false, true) : it.premise.map(esc).join("<br>")}</div>
       <div class="txt-q">${esc(it.question)}</div><div class="opt-list" style="width:820px">${ops}</div></div>`;
   }
   // 예측추론: 전제 2개 + 질문 (자극책자 상자) + 아래 선지 4개
-  return `<div class="stage" style="width:100%"><div class="txt-card left" style="width:1080px;font-size:25px;line-height:1.7">${it.lines.map(esc).join("<br>")}</div>
+  return `<div class="stage" style="width:100%"><div class="txt-card left" style="width:1080px;font-size:25px;line-height:1.7">${T.lang === "vi" ? linesHTML(it.lines.map(esc), false, true) : it.lines.map(esc).join("<br>")}</div>
     <div class="opt-list" style="width:1080px;margin-top:22px">${ops}</div></div>`;
 }
 function stageHTML(it, st, maxH = 700) {
@@ -240,7 +286,7 @@ class InfoScreenPlugin {
     const done = (label) => this.jsPsych.finishTrial({ response: label });
     if (trial.title) {
       el.innerHTML = `<div class="math-wrap title-wrap"><div class="title-stage"><div class="title-oval"></div>
-        <div class="title-text"><div class="title-badge">${UI.battery}</div><div class="title-name">${T.title}</div>
+        <div class="title-text"><div class="title-badge">${UI.battery}</div><div class="title-name">${T.titleHTML || T.title}</div>
         <div class="title-instr">${linesHTML(T.instr)}</div>
         <button class="title-start" data-i="0"><span class="play"></span>${UI.start}</button></div></div></div>`;
     } else {
@@ -289,7 +335,7 @@ class ItemPlugin {
       </div></div>`;
     applyScale();
     const root = el.querySelector("#stage-root"), nextBtn = el.querySelector("#next-btn"), badge = el.querySelector("#timer-badge");
-    const draw = () => { root.innerHTML = stageHTML(it, { sel: r.sel, active: r.active }, maxH); nextBtn.disabled = !complete(it, r); };
+    const draw = () => { root.innerHTML = stageHTML(it, { sel: r.sel, active: r.active }, maxH); if (T.lang === "vi") fitLines(root); nextBtn.disabled = !complete(it, r); };
     draw();
     const end = () => {
       if (finished) return;
@@ -379,7 +425,7 @@ T.practice.forEach((it, k) => {
     body_html: () => {
       const res = lastPractice();
       const head = res.correct ? UI.practiceRight : UI.practiceCheck;
-      return `<div class="info-box explain-box"><div class="explain-tag">${UI.explainTag(k + 1)}</div><div class="explain-head">${head}</div>${linesHTML(it.explain)}</div>
+      return `<div class="info-box explain-box"><div class="explain-tag">${UI.explainTag(k + 1)}</div><div class="explain-head">${head}</div>${linesHTML(it.explain, T.lang === "vi")}</div>
         <div class="mockup-inert">${stageHTML(it, { hl: true }, it.kind === "image" ? 470 : 470)}</div>`;
     },
   });

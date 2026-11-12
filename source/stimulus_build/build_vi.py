@@ -87,7 +87,6 @@ def ptt_item(it, folder_out, key):
     it['ar'] = round(W / CUT, 5)
     for o in it['options']:
         x, y, w, h = o['box']; o['box'] = [x, round(y * H / CUT, 4), w, round(h * H / CUT, 4)]
-    q = ROW[('transitivity', 'image.prompt')] if False else None
     return im, icons
 
 def build():
@@ -108,6 +107,8 @@ def build():
         V['tag'] = V['title'] = name
         instr = join_comma(lines_of(tr(folder, 'TASK.instr', '')))
         if folder == 'number_series': instr = [instr[0] + ' ' + instr[1]] + instr[2:]
+        if folder == 'picture_concepts': instr = [instr[0] + ' ' + instr[1]] + instr[2:]   # 짧은 두 문장 한 줄로(수정 요청)
+        if folder == 'pattern': V['titleHTML'] = name.replace('_', '_<br>', 1)   # 제목은 '_' 뒤에서 줄바꿈
         V['instr'] = instr
         d = f'{OUT}/{folder}'; os.makedirs(d + '/images', exist_ok=True)
         if folder != 'transitivity':
@@ -115,7 +116,7 @@ def build():
         for kind in ('practice', 'items'):
             for i, (ko_it, it) in enumerate(zip(T[kind], V[kind])):
                 if 'explain' in ko_it:
-                    it['explain'] = pack(tr(folder, f'TASK.{kind}[{i}].explain', ''))
+                    it['explain'] = sentences(tr(folder, f'TASK.{kind}[{i}].explain', ''))   # 줄 묶기는 화면에서 실제 폭을 재서 처리(engine.js layoutVi)
                 if folder == 'transitivity':
                     key = it['img'].split('/')[-1][:-4]
                     im, icons = ptt_item(it, d, key)

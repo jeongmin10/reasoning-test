@@ -56,8 +56,8 @@ body.running:has(.instruction){background:#f4f6fb}
 #run-stop{font-size:13px;color:#8a5a5a}
 #experiment{flex:1;position:relative;min-height:0}
 #experiment iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
-.between{max-width:560px;margin:12vh auto 0;background:#fff;border:2px solid #2554c7;border-radius:20px;padding:36px 40px;text-align:center;box-shadow:0 10px 24px rgba(37,84,199,.08)}
-.between h2{color:#1c3f94;margin:0 0 10px}.between p{color:#657593;margin:0 0 22px}
+.between{width:fit-content;min-width:min(560px,92vw);max-width:min(940px,92vw);margin:12vh auto 0;background:#fff;border:2px solid #2554c7;border-radius:20px;padding:36px 40px;text-align:center;box-shadow:0 10px 24px rgba(37,84,199,.08)}
+.between h2{color:#1c3f94;margin:0 0 10px;white-space:nowrap}.between p{color:#657593;margin:0 0 22px}
 .summary-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}.summary-table th,.summary-table td{border-bottom:1px solid #dde6f6;padding:7px 8px;text-align:left}
 
 /* 검사 실행 중에도 기준 검사처럼 로고 머리글 + 검사 이름/진행 줄을 유지 */
@@ -855,6 +855,8 @@ window.BATTERY_TEXT = {
     const next = queue[qIndex + 1], done = queue[qIndex];
     frame = null;
     $('#experiment').innerHTML = `<div class="between"><h2>${escape(t('taskFinished', { name: taskName(done) }))}</h2><p>${escape(t('nextTask', { name: taskName(next) }))}<br>${escape(t('nextHint'))}</p><button class="primary" id="between-next">${escape(t('continue'))}</button></div>`;
+    { const h = $('.between h2'); let size = parseFloat(getComputedStyle(h).fontSize);   // 제목은 한 줄: 넘치면 글자 크기를 줄임
+      while (h.scrollWidth > h.clientWidth + 1 && size > 16) { size -= 1; h.style.fontSize = size + 'px'; } }
     $('#between-next').onclick = () => runTask(qIndex + 1);
   }
   window.addEventListener('message', ev => {

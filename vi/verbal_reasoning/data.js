@@ -43,7 +43,8 @@ window.TASK = {
    "answer": "1",
    "explain": [
     "Đoạn văn nói rằng vào ngày trời mưa thì Nguyễn Minh mang ô.",
-    "Hôm nay trời mưa, nên có thể biết rằng Nguyễn Minh đã mang ô. Do đó đáp án là số 1."
+    "Hôm nay trời mưa, nên có thể biết rằng Nguyễn Minh đã mang ô.",
+    "Do đó đáp án là số 1."
    ]
   },
   {
@@ -78,7 +79,8 @@ window.TASK = {
    "answer": "2",
    "explain": [
     "Đoạn văn nói rằng tất cả mèo đều là động vật.",
-    "Và Mây là một con mèo, nên có thể biết rằng Mây là động vật. Do đó đáp án là số 2."
+    "Và Mây là một con mèo, nên có thể biết rằng Mây là động vật.",
+    "Do đó đáp án là số 2."
    ]
   }
  ],

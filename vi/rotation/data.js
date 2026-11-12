@@ -53,7 +53,8 @@ window.TASK = {
    ],
    "answer": "3",
    "explain": [
-    "Khối lập phương này được xoay sang phải ba lần. Ban đầu, mặt trên là hình vuông, mặt bên trái là hình tròn rỗng, mặt bên phải là dấu X.",
+    "Khối lập phương này được xoay sang phải ba lần.",
+    "Ban đầu, mặt trên là hình vuông, mặt bên trái là hình tròn rỗng, mặt bên phải là dấu X.",
     "Khi xoay sang phải, hình ở mặt trên giữ nguyên, nhưng hình ở các mặt bên thay đổi theo thứ tự.",
     "Theo thứ tự hình tròn rỗng và dấu X xuất hiện xen kẽ, lựa chọn số 3 có hình dạng giống nhau."
    ]
@@ -97,7 +98,8 @@ window.TASK = {
    ],
    "answer": "2",
    "explain": [
-    "Khối lập phương này được xoay lên trên ba lần. Ban đầu, mặt trên là hình tròn, mặt bên trái là hình vuông, mặt bên phải là hình thoi.",
+    "Khối lập phương này được xoay lên trên ba lần.",
+    "Ban đầu, mặt trên là hình tròn, mặt bên trái là hình vuông, mặt bên phải là hình thoi.",
     "Mỗi lần xoay lên, hình ở mặt trên và mặt bên thay đổi theo thứ tự.",
     "Theo thứ tự hình tròn, hình vuông, hình tròn, hình vuông, lựa chọn số 2 có hình dạng giống nhau."
    ]

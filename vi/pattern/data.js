@@ -61,7 +61,9 @@ window.TASK = {
    "answer": "3",
    "explain": [
     "Nhìn tranh, có hai hình là hình vuông đỏ và hình tam giác xanh xuất hiện xen kẽ nhau.",
-    "Quy luật là hình vuông đỏ và hình tam giác xanh lặp lại như vậy. Vì thế sau hình vuông đỏ phải là hình tam giác xanh. Do đó đáp án là số 3."
+    "Quy luật là hình vuông đỏ và hình tam giác xanh lặp lại như vậy.",
+    "Vì thế sau hình vuông đỏ phải là hình tam giác xanh.",
+    "Do đó đáp án là số 3."
    ]
   },
   {
@@ -114,7 +116,8 @@ window.TASK = {
    "explain": [
     "Nhìn tranh, hình vuông xanh dương, hình tròn vàng và hình tam giác xanh lá lặp lại thành một nhóm.",
     "Quy luật là hình vuông xanh dương, hình tròn vàng, hình tam giác xanh lá lặp lại như vậy.",
-    "Vì thế sau hình tam giác xanh lá phải là một nhóm như vậy nữa. Do đó đáp án là số 4."
+    "Vì thế sau hình tam giác xanh lá phải là một nhóm như vậy nữa.",
+    "Do đó đáp án là số 4."
    ]
   }
  ],
@@ -1079,7 +1082,8 @@ window.TASK = {
    ],
    "answer": "4"
   }
- ]
+ ],
+ "titleHTML": "Bài kiểm tra mẫu hình_<br>Lặp lại/Phát triển"
 };
 window.TASK.ui = {
   battery: "Bài kiểm tra Năng lực Suy luận", start: "Bắt đầu", next: "Tiếp theo", reset: "Làm lại",

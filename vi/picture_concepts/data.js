@@ -7,8 +7,7 @@ window.TASK = {
  "tag": "Tìm điểm chung của tranh",
  "title": "Tìm điểm chung của tranh",
  "instr": [
-  "Bây giờ chúng ta sẽ làm bài về tranh.",
-  "Mỗi hàng sẽ có nhiều bức tranh.",
+  "Bây giờ chúng ta sẽ làm bài về tranh. Mỗi hàng sẽ có nhiều bức tranh.",
   "Hãy chọn ở mỗi hàng một bức tranh mà con nghĩ là hợp với nhau, số tranh chọn bằng số hàng.",
   "Các bức tranh được chọn có một điểm giống nhau hoặc tương tự nhau.",
   "Có thể có nhiều điểm giống nhau, nhưng hãy nghĩ đến đặc điểm quan trọng nhất để chọn."
@@ -94,7 +93,8 @@ window.TASK = {
    ],
    "explain": [
     "Hàng trên có quả táo, đôi giày, cuộn băng dính, hàng dưới có quyển lịch, chùm nho, quả bóng bay.",
-    "Trong số đó, quả táo và chùm nho đều là trái cây. Vì vậy đáp án là quả táo và chùm nho."
+    "Trong số đó, quả táo và chùm nho đều là trái cây.",
+    "Vì vậy đáp án là quả táo và chùm nho."
    ]
   },
   {
@@ -209,7 +209,8 @@ window.TASK = {
    ],
    "explain": [
     "Hàng thứ nhất có cái cây, quả bóng, xà đơn, hàng thứ hai có chiếc lá, cái kẹp giấy, cây nến, hàng thứ ba có khăn tay, xe đạp, bông hoa.",
-    "Trong số đó, cái cây, chiếc lá và bông hoa đều là thực vật. Vì vậy đáp án là cái cây, chiếc lá và bông hoa."
+    "Trong số đó, cái cây, chiếc lá và bông hoa đều là thực vật.",
+    "Vì vậy đáp án là cái cây, chiếc lá và bông hoa."
    ]
   }
  ],

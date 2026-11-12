@@ -55,7 +55,8 @@ window.TASK = {
    "explain": [
     "Trong bài này, điều quan trọng là tìm ra quy luật lặp lại của cùng một hoa văn.",
     "Nhìn các hình được đưa ra, đó là hoa văn kẻ sọc với những đường đen thẳng đứng lặp lại.",
-    "Vì vậy ô trống cũng phải là hoa văn có cùng hướng và hình dạng. Tìm hình có các sọc dọc lặp lại, đáp án là số 1 trong các lựa chọn."
+    "Vì vậy ô trống cũng phải là hoa văn có cùng hướng và hình dạng.",
+    "Tìm hình có các sọc dọc lặp lại, đáp án là số 1 trong các lựa chọn."
    ]
   },
   {
@@ -100,7 +101,8 @@ window.TASK = {
    "explain": [
     "Trong bài này, điều quan trọng là tìm ra quy luật lặp lại của cùng một hoa văn.",
     "Nhìn các hình được đưa ra, đó là hoa văn hình ngôi sao có cùng hình dạng và kích thước.",
-    "Vì vậy ô trống cũng phải là hoa văn có cùng hình dạng và kích thước. Tìm hình có hoa văn ngôi sao lặp lại, đáp án là số 2 trong các lựa chọn."
+    "Vì vậy ô trống cũng phải là hoa văn có cùng hình dạng và kích thước.",
+    "Tìm hình có hoa văn ngôi sao lặp lại, đáp án là số 2 trong các lựa chọn."
    ]
   }
  ],

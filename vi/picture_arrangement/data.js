@@ -57,8 +57,10 @@ window.TASK = {
     "2"
    ],
    "explain": [
-    "Ở bức tranh thứ nhất, bạn trai đang cầm tay nắm và mở cửa. Bức tranh thứ hai là cảnh bạn ấy đang bước ra ngoài cửa.",
-    "Bức tranh thứ ba là cảnh bạn ấy đang đứng trước cửa. Câu chuyện này kể về việc bạn trai mở cửa rồi đi ra ngoài, nên thứ tự là số 3 → số 1 → số 2."
+    "Ở bức tranh thứ nhất, bạn trai đang cầm tay nắm và mở cửa.",
+    "Bức tranh thứ hai là cảnh bạn ấy đang bước ra ngoài cửa.",
+    "Bức tranh thứ ba là cảnh bạn ấy đang đứng trước cửa.",
+    "Câu chuyện này kể về việc bạn trai mở cửa rồi đi ra ngoài, nên thứ tự là số 3 → số 1 → số 2."
    ]
   },
   {
@@ -104,8 +106,10 @@ window.TASK = {
     "3"
    ],
    "explain": [
-    "Ở bức tranh thứ nhất, bạn ấy đang cầm cuốn sách trên tay. Bức tranh thứ hai là cảnh bạn ấy mở sách ra và bắt đầu đọc.",
-    "Bức tranh thứ ba là cảnh bạn ấy đã đọc gần hết, chỉ còn ít trang. Câu chuyện này kể về quá trình đọc sách, nên thứ tự là số 1 → số 2 → số 3."
+    "Ở bức tranh thứ nhất, bạn ấy đang cầm cuốn sách trên tay.",
+    "Bức tranh thứ hai là cảnh bạn ấy mở sách ra và bắt đầu đọc.",
+    "Bức tranh thứ ba là cảnh bạn ấy đã đọc gần hết, chỉ còn ít trang.",
+    "Câu chuyện này kể về quá trình đọc sách, nên thứ tự là số 1 → số 2 → số 3."
    ]
   }
  ],

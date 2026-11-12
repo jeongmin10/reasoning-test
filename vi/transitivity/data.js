@@ -71,8 +71,10 @@ window.TASK = {
    "answer": "C",
    "excel_item": "P1",
    "explain": [
-    "Trong bài này, cần nối các quan hệ so sánh độ dài của đồ vật lại với nhau. Trước tiên, cục tẩy ngắn hơn bút chì, và bút chì ngắn hơn thước kẻ.",
-    "Nối hai quan hệ này lại, thứ tự từ ngắn đến dài là cục tẩy < bút chì < thước kẻ. Vì vậy, so sánh cục tẩy và thước kẻ thì thước kẻ dài hơn."
+    "Trong bài này, cần nối các quan hệ so sánh độ dài của đồ vật lại với nhau.",
+    "Trước tiên, cục tẩy ngắn hơn bút chì, và bút chì ngắn hơn thước kẻ.",
+    "Nối hai quan hệ này lại, thứ tự từ ngắn đến dài là cục tẩy < bút chì < thước kẻ.",
+    "Vì vậy, so sánh cục tẩy và thước kẻ thì thước kẻ dài hơn."
    ],
    "prompt": "<img class=\"q-icon\" src=\"images/ex1_q1.png\" alt=\"\"> và <img class=\"q-icon\" src=\"images/ex1_q2.png\" alt=\"\">, cái nào dài hơn?"
   },

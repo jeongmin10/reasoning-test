@@ -51,7 +51,8 @@ window.TASK = {
    "maxScore": 2,
    "answer": "4",
    "explain": [
-    "Bạn nhỏ này chia kẹo cho bạn, và khi bạn không có bút chì màu thì cho bạn mượn. Vì vậy bạn nhỏ này có khuynh hướng chia sẻ đồ vật hoặc giúp đỡ người khác.",
+    "Bạn nhỏ này chia kẹo cho bạn, và khi bạn không có bút chì màu thì cho bạn mượn.",
+    "Vì vậy bạn nhỏ này có khuynh hướng chia sẻ đồ vật hoặc giúp đỡ người khác.",
     "Trong tình huống này, khi bạn không có cục tẩy, bạn ấy cũng sẽ cho mượn hoặc chia sẻ cục tẩy."
    ]
   },
@@ -93,7 +94,8 @@ window.TASK = {
    "maxScore": 2,
    "answer": "1",
    "explain": [
-    "Bạn nhỏ này giúp đỡ khi bạn bị ngã, và mang giúp khi bạn mang cặp nặng. Vì vậy bạn nhỏ này có khuynh hướng giúp đỡ khi bạn gặp khó khăn.",
+    "Bạn nhỏ này giúp đỡ khi bạn bị ngã, và mang giúp khi bạn mang cặp nặng.",
+    "Vì vậy bạn nhỏ này có khuynh hướng giúp đỡ khi bạn gặp khó khăn.",
     "Trong tình huống này, khi bạn ôm nhiều sách và thấy mệt, bạn ấy cũng sẽ mang giúp hoặc cùng mang sách với bạn."
    ]
   }
